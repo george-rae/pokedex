@@ -13,7 +13,7 @@
 
   animation: fadeIn 450ms linear 1 forwards;
 
-  @for $i from 1 to 151 {
+  @for $i from 1 to 152 {
     &:nth-child(#{$i}) {
       animation-delay: 150ms * $i;
     }

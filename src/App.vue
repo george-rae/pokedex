@@ -5,6 +5,7 @@ import { RouterLink, RouterView } from "vue-router";
 <template>
   <header>
     <img alt="Pokedex Logo" class="pokedex-logo" src="/pokedex_logo.png" />
+    <p>this is a holding area</p>
   </header>
 
   <RouterView />
@@ -24,6 +25,10 @@ import { RouterLink, RouterView } from "vue-router";
 
   overflow: hidden;
   
+  header {
+    height: 175px;
+  }
+
   .pokedex-logo {
     margin: 0 auto;
   }
