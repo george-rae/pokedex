@@ -7,6 +7,10 @@ export const usePokedexStore = defineStore({
   state: (): PokeState => ({
     ID: 2,
     pokemons: [],
+    cardDetails: {
+      types: [],
+      sprite: "",
+    }
   }),
   getters: {
     getPokedexID: (state) => state.ID,
@@ -19,12 +23,15 @@ export const usePokedexStore = defineStore({
     async fetchPokemon(ID: number) {
       const pokemon: any = await fetchData("pokedex", ID);
 
-      this.pokemons.push(pokemon.pokemon_entries);
+      this.pokemons = [...pokemon.pokemon_entries];
     },
     async fetchMinorDetails(pokemon: string) {
       const details: any = await fetchData("pokemon", pokemon);
 
-      return [details.types];
+      return { 
+        types: [...details.types],
+        sprite: details.sprites.other["official-artwork"].front_default
+      };
     },
   },
 });

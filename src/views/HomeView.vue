@@ -1,20 +1,24 @@
 <script setup lang="ts">
+import { reactive, computed } from "vue";
 import { usePokedexStore } from "@/stores/pokedex";
+import PokemonCard from "@/components/PokemonCard.vue";
 
 const pokedex = usePokedexStore();
 pokedex.fetchPokemon(pokedex.ID);
 
-const pokemons = pokedex.getPokemon;
+const pokemons = computed(() => {
+  return pokedex.getPokemon;
+});
 
-return { pokedex };
 </script>
 
 <template>
+<Suspense>
   <main>
     <ul>
-      <li v-for="pokemon in pokemons" :key="pokemon.name">
-        {{ pokemon.name }}
-      </li>
+      <PokemonCard v-for="pokemon in pokemons" :key="pokemon.entry_number" :name="pokemon.pokemon_species.name" :entry="pokemon.entry_number">
+      </PokemonCard>
     </ul>
   </main>
+</Suspense>
 </template>
