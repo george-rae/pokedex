@@ -16,10 +16,14 @@ const types = (await details.value).types;
 </script>
 
 <template>
-  <li>{{ name }} {{ entry }}
+  <li class="list-item" :class="'list-item--' + types[0].type.name" >
+    <h2 class="list-item__name">{{ name }}</h2>
+    <h3 class="list-item__id">{{ entry }}</h3>
     <img :src="sprite" />
-    <p v-for="type in types" :key="type">
-      {{ type.type.name }}
-    </p>
+    <div class="list-item__types">
+      <p v-for="type in types" :key="type">
+        {{ type.type.name }}
+      </p>
+    </div>
   </li>
 </template>

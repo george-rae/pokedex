@@ -8,21 +8,38 @@ import { RouterLink, RouterView } from "vue-router";
   </header>
 
   <RouterView />
+  <img class="background-pokeball" src="/pokeball.svg" alt="Pokeball icon" />
 </template>
 
-<style lang="stylus">
-#app
+<style lang="scss">
+#app {
   position: relative;
 
   height: 100vh;
   width: 100vw;
 
-  padding: 40px;
+  padding: 40px 0;
 
-  background-size: 100% auto;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: #f6f6f6;
 
-.pokedex-logo
-  margin: 0 auto;
+  overflow: hidden;
+  
+  .pokedex-logo {
+    margin: 0 auto;
+  }
+
+  .background-pokeball {
+    position: absolute;
+    bottom: -30vh;
+    right: -30vh;
+
+    height: 65vh;
+    width: auto;
+
+    z-index: 0;
+  }
+}
+
+
+
 </style>

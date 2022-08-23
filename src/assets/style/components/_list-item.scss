@@ -1,0 +1,102 @@
+.list-item {
+  position: relative;
+
+  padding: 15px;
+
+  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.25));
+  border-radius: 10px;
+
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0;
+
+  animation: fadeIn 450ms linear 1 forwards;
+
+  @for $i from 1 to 151 {
+    &:nth-child(#{$i}) {
+      animation-delay: 150ms * $i;
+    }
+  }
+
+  $types: 
+    ("normal": $colour-normal,
+    "fire": $colour-fire,
+    "water": $colour-water,
+    "electric": $colour-electric,
+    "grass": $colour-grass,
+    "ice": $colour-ice,
+    "fighting": $colour-fighting,
+    "poison": $colour-poison,
+    "ground": $colour-ground,
+    "flying": $colour-flying,
+    "psychic": $colour-psychic,
+    "bug": $colour-bug,
+    "rock": $colour-rock,
+    "ghost": $colour-ghost,
+    "dragon": $colour-dragon, 
+    "dark": $colour-dark,
+    "steel": $colour-steel,
+    "fairy": $colour-fairy);
+
+  @each $type, $colour in $types {
+    &--#{$type} {
+      background-color: $colour;
+    }
+  }
+
+  .list-item__name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: capitalize;
+  }
+
+  .list-item__id {
+    position: absolute;
+    top: -10px; right: -10px;
+    
+    @include flex-y(center, center);
+    @include circle(50px);
+
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  .list-item__types {
+    @include flex-x(center, center);
+    margin: 5px auto;
+
+    p {
+      padding: 5px 10px;
+      margin: 0 5px;
+      border-radius: 7.5px;
+
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+      text-transform: capitalize;
+
+      background: rgba(255, 255, 255, 0.25) 
+    }
+  }
+
+  img {
+    position: relative;
+    width: 100%;
+    z-index: 2;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
