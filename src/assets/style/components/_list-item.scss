@@ -2,6 +2,7 @@
   position: relative;
 
   padding: 15px;
+  @include flex-x(space-between, $wrap: wrap);
 
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.25));
   border-radius: 10px;
@@ -52,17 +53,9 @@
   }
 
   .list-item__id {
-    position: absolute;
-    top: -10px; right: -10px;
-    
-    @include flex-y(center, center);
-    @include circle(50px);
-
     font-size: 18px;
     font-weight: 700;
     color: #fff;
-
-    background: rgba(255, 255, 255, 0.25);
   }
 
   .list-item__types {
