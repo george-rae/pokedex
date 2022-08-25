@@ -1,10 +1,10 @@
 export interface Generation {
   label: string;
-  ID: number;
+  ID: number | Generation[];
 }
 
 export interface GenerationGroup {
-  [key: string]: Generation;
+  [key: any]: Generation[];
 }
 
 interface PokeState {

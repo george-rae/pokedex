@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { usePokedexStore } from "@/stores/pokedex";
+
 const pokedex = usePokedexStore();
 
 const props = defineProps(["name", "entry"]);

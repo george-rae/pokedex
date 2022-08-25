@@ -1,14 +1,22 @@
 <script setup lang="ts">
 import { usePokedexStore } from "@/stores/pokedex";
-import type * as gType from "@/types/pokemon";
+import type GenerationGroup from "@/types/pokemon";
 import generations from "@/data/generations";
 const pokedex = usePokedexStore();
 
-const updateGen = (ID: number | gType.GenerationGroup[]) => {
-  pokedex.changeGen(ID as number);
-  console.log(pokedex);
+const updateGen = (evt: Event, ID: number | GenerationGroup) => {
+  const target = evt.target as HTMLElement;
+  if (Array.isArray(ID)) {
+    target.classList.toggle("dropdown-active");
+  } else {
+    pokedex.changeGen(ID as number);
+    pokedex.fetchPokemon(ID as number);
+  }
+};
 
-  pokedex.fetchPokemon(ID as number);
+const removeClass = (evt: Event) => {
+  const target = evt.target as HTMLElement;
+  target.classList.remove("dropdown-active");
 };
 </script>
 
@@ -17,13 +25,37 @@ const updateGen = (ID: number | gType.GenerationGroup[]) => {
     <img alt="Pokedex Logo" class="pokedex-logo" src="/pokedex_logo.png" />
     <div class="gen-buttons">
       <button
-        v-for="generation in generations"
-        :key="generation.label"
         class="gen-buttons__button"
-        @click="updateGen(generation.ID as number | gType.GenerationGroup[])"
+        type="button"
+        v-for="(generation, index) in generations"
+        :key="generation.label"
+        :class="'gen-buttons__button--' + (index + 1)"
+        :pokedexid="generation.ID"
+        @click="updateGen($event, generation.ID as number)"
+        @blur="removeClass"
       >
         {{ generation.label }}
+        <ul class="gen-dropdown" v-if="Array.isArray(generation.ID)">
+          <li
+            v-for="gendropdown in generation.ID"
+            @click="updateGen($event, gendropdown.ID)"
+            :key="gendropdown.label"
+          >
+            {{ gendropdown.label }}
+          </li>
+        </ul>
       </button>
     </div>
   </header>
 </template>
+
+<style lang="scss" scoped>
+@import "@/assets/style/vars";
+header {
+  position: relative;
+
+  @include flex-y(space-between, center);
+  gap: 12px;
+  z-index: 2;
+}
+</style>

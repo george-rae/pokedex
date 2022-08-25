@@ -8,32 +8,28 @@ import { RouterLink, RouterView } from "vue-router";
 </template>
 
 <style lang="scss">
+@import "@/assets/style/vars";
+
 #app {
   position: relative;
 
+  @include flex-y(space-between, center, $wrap: nowrap);
+  gap: 20px;
   height: 100vh;
   width: 100vw;
 
-  padding: 40px 0;
+  padding: 40px 0 0;
 
   background-color: #f6f6f6;
 
   overflow: hidden;
 
-  header {
-    height: 175px;
-  }
-
-  .pokedex-logo {
-    margin: 0 auto;
-  }
-
   .background-pokeball {
     position: absolute;
-    bottom: -30vh;
-    right: -30vh;
+    bottom: -50vh;
+    right: -50vh;
 
-    height: 65vh;
+    height: 150vh;
     width: auto;
 
     z-index: 0;

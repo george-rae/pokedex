@@ -75,24 +75,37 @@
   border-radius: 50%;
 }
 
-
-$colour-normal: #A8A77A;
-$colour-fire: #EE8130;
-$colour-water: #6390F0;
-$colour-electric: #F7D02C;
-$colour-grass: #7AC74C;
-$colour-ice: #96D9D6;
-$colour-fighting: #C22E28;
-$colour-poison: #A33EA1;
-$colour-ground: #E2BF65;
-$colour-flying: #A98FF3;
-$colour-psychic: #F95587;
-$colour-bug: #A6B91A;
-$colour-rock: #B6A136;
+// TYPE COLOURS
+$colour-normal: #a8a77a;
+$colour-fire: #ee8130;
+$colour-water: #6390f0;
+$colour-electric: #f7d02c;
+$colour-grass: #7ac74c;
+$colour-ice: #96d9d6;
+$colour-fighting: #c22e28;
+$colour-poison: #a33ea1;
+$colour-ground: #e2bf65;
+$colour-flying: #a98ff3;
+$colour-psychic: #f95587;
+$colour-bug: #a6b91a;
+$colour-rock: #b6a136;
 $colour-ghost: #735797;
-$colour-dragon: #6F35FC;
+$colour-dragon: #6f35fc;
 $colour-dark: #705746;
-$colour-steel: #B7B7CE;
-$colour-fairy: #D685AD;
+$colour-steel: #b7b7ce;
+$colour-fairy: #d685ad;
+
+// GEN COLOURS
+body {
+  --colour-gen-1: #acd36c;
+  --colour-gen-2: #dcd677;
+  --colour-gen-3: #9cd7c8;
+  --colour-gen-4: #b7a3c3;
+  --colour-gen-5: #9fcadf;
+  --colour-gen-6: #dd608c;
+  --colour-gen-7: #e89483;
+  --colour-gen-8: #c97dc0;
+  --colour-gen-9: #6f6f6f;
+}
 
 $header-padding: 25px;

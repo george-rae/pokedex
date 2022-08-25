@@ -24,15 +24,15 @@ const generations = [
     ID: [
       {
         label: "Kalos Central",
-        ID: "12",
+        ID: 12,
       },
       {
         label: "Kalos Coastal",
-        ID: "13",
+        ID: 13,
       },
       {
         label: "Kalos Mountain",
-        ID: "14",
+        ID: 14,
       },
     ],
   },
@@ -41,23 +41,23 @@ const generations = [
     ID: [
       {
         label: "Alola",
-        ID: "21",
+        ID: 21,
       },
       {
         label: "Melemele",
-        ID: "22",
+        ID: 22,
       },
       {
         label: "Akala",
-        ID: "23",
+        ID: 23,
       },
       {
         label: "Ulaula",
-        ID: "24",
+        ID: 24,
       },
       {
         label: "Poni",
-        ID: "25",
+        ID: 25,
       },
     ],
   },
@@ -66,17 +66,21 @@ const generations = [
     ID: [
       {
         label: "Galar",
-        ID: "27",
+        ID: 27,
       },
       {
         label: "Isle of Armor",
-        ID: "28",
+        ID: 28,
       },
       {
         label: "Crown Tundra",
-        ID: "29",
+        ID: 29,
       },
     ],
+  },
+  {
+    label: "National",
+    ID: 1,
   },
 ];
 

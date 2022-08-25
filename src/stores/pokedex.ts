@@ -20,6 +20,8 @@ export const usePokedexStore = defineStore({
   },
   actions: {
     changeGen(gen: number) {
+      // state.$reset completely breaks the app
+      // this is just manually resetting the state variables needed.
       this.pokemons = [];
       this.currentLength = 0;
       this.ID = gen;
@@ -30,21 +32,31 @@ export const usePokedexStore = defineStore({
 
       const pokemon: any = await fetchData("pokedex", ID);
 
+      // getting the max entry number for current pokedex.
       this.currentMax = pokemon.pokemon_entries.length;
 
+      // adding current length to keep track of `splice()` start position.
       if (this.currentLength <= this.currentMax) {
         this.currentLength = currentLength + inc;
       } else {
+        // if currentLength exceeds the pokedex length then do no more.
         this.currentLength = this.currentMax;
         return;
       }
 
+      // push the spread array to the state variable so the result can be cached with a getter.
       this.pokemons.push(
         ...pokemon.pokemon_entries.slice(currentLength, currentLength + inc)
       );
     },
     async fetchMinorDetails(pokemon: string) {
-      const details: any = await fetchData("pokemon", pokemon);
+      // need to get the species first as some pokemon returned from `pokedex` call
+      // do not match their name in the API calls for /pokemon/{name}...
+      const species: any = await fetchData("pokemon-species", pokemon);
+      const APIName: string = species.varieties[0].pokemon.name;
+
+      // use the filtered API name to make the fetch()
+      const details: any = await fetchData("pokemon", APIName);
 
       return {
         types: [...details.types],
