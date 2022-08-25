@@ -7,6 +7,10 @@
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.25));
   border-radius: 10px;
 
+  background-size: auto 150%;
+  background-position: 25% 25%;
+  background-repeat: no-repeat;
+
   overflow: hidden;
   cursor: pointer;
   opacity: 0;
@@ -43,6 +47,11 @@
   @each $type, $colour in $types {
     &--#{$type} {
       background-color: $colour;
+      background-image: url("/type-icons/#{$type}.svg");
+
+      .list-item__entry {
+        color: $colour;
+      }
     }
   }
 
@@ -57,6 +66,20 @@
     font-size: 18px;
     font-weight: 700;
     color: #fff;
+  }
+
+  .list-item__entry {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    padding: 5px 10px;
+    border-top-right-radius: 5px;
+
+    font-size: 12px;
+    font-weight: 3400;
+
+    background: rgba(255, 255, 255, 0.85);
   }
 
   .list-item__types {
