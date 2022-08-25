@@ -20,8 +20,9 @@ export const usePokedexStore = defineStore({
   },
   actions: {
     changeGen(gen: number) {
-      this.ID = gen;
       this.pokemons = [];
+      this.currentLength = 0;
+      this.ID = gen;
     },
     async fetchPokemon(ID: number) {
       const currentLength = this.currentLength;
@@ -38,8 +39,6 @@ export const usePokedexStore = defineStore({
         return;
       }
 
-      console.log("this is being called");
-
       this.pokemons.push(
         ...pokemon.pokemon_entries.slice(currentLength, currentLength + inc)
       );
@@ -49,6 +48,7 @@ export const usePokedexStore = defineStore({
 
       return {
         types: [...details.types],
+        ID: details.id,
         sprite: details.sprites.other["official-artwork"].front_default,
       };
     },

@@ -2,7 +2,7 @@
 import { onMounted, computed } from "vue";
 import { usePokedexStore } from "@/stores/pokedex";
 import PokemonCard from "@/components/PokemonCard.vue";
-import PokeHeader from "../components/PokeHeader.vue";
+import PokeHeader from "@/components/PokeHeader.vue";
 
 const pokedex = usePokedexStore();
 pokedex.fetchPokemon(pokedex.ID);

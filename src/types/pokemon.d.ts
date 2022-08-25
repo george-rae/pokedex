@@ -1,3 +1,12 @@
+export interface Generation {
+  label: string;
+  ID: number;
+}
+
+export interface GenerationGroup {
+  [key: string]: Generation;
+}
+
 interface PokeState {
   ID: number;
   pokemons: any;
