@@ -12,11 +12,10 @@ const details = computed(() => {
 
 const sprite = (await details.value).sprite;
 const types = (await details.value).types;
-
 </script>
 
 <template>
-  <li class="list-item" :class="'list-item--' + types[0].type.name" >
+  <li class="list-item" :class="'list-item--' + types[0].type.name">
     <h2 class="list-item__name">{{ name }}</h2>
     <h3 class="list-item__id">#{{ entry }}</h3>
     <img :src="sprite" />

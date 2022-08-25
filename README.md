@@ -6,7 +6,7 @@ This is an example project to get to grips with the [PokeAPI](https://pokeapi.co
 
 - [Vue 3 (TS)](https://vuejs.org/)
 - [Vite](https://vitejs.dev/)
-- [Stylus](https://stylus-lang.com/)
+- [Sass](https://sass-lang.com/)
 
 ## Info
 

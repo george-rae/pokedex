@@ -13,14 +13,14 @@
 
   animation: fadeIn 450ms linear 1 forwards;
 
-  @for $i from 1 to 152 {
-    &:nth-child(#{$i}) {
+  @for $i from 1 to 13 {
+    &:nth-child(12n + #{$i}) {
       animation-delay: 150ms * $i;
     }
   }
 
-  $types: 
-    ("normal": $colour-normal,
+  $types: (
+    "normal": $colour-normal,
     "fire": $colour-fire,
     "water": $colour-water,
     "electric": $colour-electric,
@@ -34,10 +34,11 @@
     "bug": $colour-bug,
     "rock": $colour-rock,
     "ghost": $colour-ghost,
-    "dragon": $colour-dragon, 
+    "dragon": $colour-dragon,
     "dark": $colour-dark,
     "steel": $colour-steel,
-    "fairy": $colour-fairy);
+    "fairy": $colour-fairy,
+  );
 
   @each $type, $colour in $types {
     &--#{$type} {
@@ -72,7 +73,7 @@
       font-weight: 500;
       text-transform: capitalize;
 
-      background: rgba(255, 255, 255, 0.25) 
+      background: rgba(255, 255, 255, 0.25);
     }
   }
 

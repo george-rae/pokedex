@@ -3,11 +3,6 @@ import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
-  <header>
-    <img alt="Pokedex Logo" class="pokedex-logo" src="/pokedex_logo.png" />
-    <p>this is a holding area</p>
-  </header>
-
   <RouterView />
   <img class="background-pokeball" src="/pokeball.svg" alt="Pokeball icon" />
 </template>
@@ -24,7 +19,7 @@ import { RouterLink, RouterView } from "vue-router";
   background-color: #f6f6f6;
 
   overflow: hidden;
-  
+
   header {
     height: 175px;
   }
@@ -44,7 +39,4 @@ import { RouterLink, RouterView } from "vue-router";
     z-index: 0;
   }
 }
-
-
-
 </style>
