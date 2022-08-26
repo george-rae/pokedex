@@ -11,18 +11,20 @@ const updateGen = (evt: Event, ID: number | GenerationGroup) => {
   } else {
     pokedex.changeGen(ID as number);
     pokedex.fetchPokemon(ID as number);
+    removeClass(evt);
   }
 };
 
 const removeClass = (evt: Event) => {
   const target = evt.target as HTMLElement;
-  target.classList.remove("dropdown-active");
+  const remove = target.closest(".dropdown-active") || target as HTMLElement;
+  remove.classList.remove("dropdown-active");
 };
 </script>
 
 <template>
   <header>
-    <img alt="Pokedex Logo" class="pokedex-logo" src="/pokedex_logo.png" />
+    <img alt="Pokedex Logo" class="pokedex-logo" src="/logo--pokedex.png" />
     <div class="gen-buttons">
       <button
         class="gen-buttons__button"

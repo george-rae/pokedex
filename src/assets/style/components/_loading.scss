@@ -1,0 +1,153 @@
+.loading-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  height: 100vh;
+  width: 100vw;
+
+  z-index: 10;
+
+  pointer-events: none;
+
+  .loading-background__left, .loading-background__right {
+    position: absolute;
+    top: -10vh;
+    left: 0;
+
+    height: 110vh;
+    width: auto;
+  }
+
+  .loading-background__left {
+    transform: translateX(0);
+    z-index: 2;
+  }
+
+  .loading-background__right {
+    background: #c12026;
+    transform: translateX(0);
+    
+    z-index: 1;
+  }
+
+  &.loaded {
+    pointer-events: auto;
+    user-select: none;
+
+    .loading-background__left {      
+      animation: slideFromLeft 1000ms ease-in-out 1 forwards;
+    }
+
+    .loading-background__right {
+      animation: slideFromRight 1000ms ease-in-out 1 forwards;
+    }
+  }
+
+
+  &.unloaded {
+    .loading-background__left {
+      animation: slideLeft 1000ms ease-in-out 1 forwards;
+    }
+  
+    .loading-background__right {
+      animation: slideRight 1000ms ease-in-out 1 forwards;
+    }
+
+    figcaption {
+      opacity: 0;
+      animation: fadeIn 0ms ease-in-out 1 reverse;
+    }
+  }
+
+  figcaption {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+
+    font-size: 125px;
+    color: #fff;
+    font-weight: bold;
+
+    opacity: 0;
+    z-index: 10;
+
+    animation: fadeIn 250ms ease-in-out 1 forwards 750ms;
+
+    span {
+      position: relative;
+      top: 0;
+
+      display: inline-block;
+      margin-right: 10px;
+
+      user-select: none;
+
+      animation: sway 750ms linear infinite 1000ms;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    @for $i from 1 to 11 {
+      span:nth-child(#{$i}) {
+        animation-delay: calc(1000ms + (#{$i * 50ms}));
+      }
+    }
+  }
+}
+
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideLeft {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slideRight {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sway {
+  25% {
+    top: 0.25vh;
+  }
+
+  50% {
+    top: 0px;
+  }
+
+  75% {
+    top: -0.25vh;
+  }
+
+  100% {
+    top: 0px;
+  }
+}

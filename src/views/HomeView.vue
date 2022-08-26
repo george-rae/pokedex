@@ -1,19 +1,22 @@
 <script setup lang="ts">
-import { onMounted, computed } from "vue";
+import { onMounted, computed, ref } from "vue";
 import { usePokedexStore } from "@/stores/pokedex";
+import useDetailsStore from "@/stores/details";
 import PokemonCard from "@/components/PokemonCard.vue";
 import PokeHeader from "@/components/PokeHeader.vue";
 
 const pokedex = usePokedexStore();
 pokedex.fetchPokemon(pokedex.ID);
 
+const details = useDetailsStore();
+
 const pokemons = computed(() => {
   return pokedex.getPokemon;
 });
 
-onMounted(() => {
-  const obs: Element = document.querySelector(".observer-pixel") as Element;
+const obs = ref<Element | null>(null);
 
+onMounted(() => {
   const observer = new IntersectionObserver((list) => {
     const { boundingClientRect, isIntersecting } = list[0];
 
@@ -26,8 +29,31 @@ onMounted(() => {
     }
   });
 
-  observer.observe(obs);
+  observer.observe(obs.value as Element);
+
+  setTimeout(() => {
+    details.loading = false;
+  }, 2000);
 });
+</script>
+
+<script lang="ts">
+export default {
+  methods: {
+    detailsLink(name: string) {
+      const details = useDetailsStore();
+      details.loading = true;
+      details.assignPokemon(name);
+
+      const pokedex = usePokedexStore();
+
+      setTimeout(() => {
+        pokedex.$reset();
+        this.$router.push({ name: "details", params: { pokemon: name } });
+      }, 1500);
+    },
+  },
+};
 </script>
 
 <template>
@@ -40,9 +66,10 @@ onMounted(() => {
           :key="pokemon.entry_number"
           :name="pokemon.pokemon_species.name"
           :entry="pokemon.entry_number"
+          @click="detailsLink(pokemon.pokemon_species.name)"
         >
         </PokemonCard>
-        <div class="observer-pixel"></div>
+        <div class="observer-pixel" ref="obs" />
       </ul>
     </main>
   </Suspense>
@@ -88,5 +115,6 @@ main {
   max-width: 1440px;
 
   margin: 0 auto;
+  padding-bottom: 20px;
 }
 </style>

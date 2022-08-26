@@ -1,9 +1,19 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
+import { RouterView } from "vue-router";
+import { computed } from "vue";
+import useDetailStore from "@/stores/details";
+import PokeLoading from "@/components/PokeLoading.vue";
+
+const loaded = computed(() => {
+  const loading = useDetailStore();
+  return loading.getLoading;
+});
+
 </script>
 
 <template>
   <RouterView />
+  <PokeLoading :class="{ unloaded: !loaded, loaded: loaded }" ref="loaded" />
   <img class="background-pokeball" src="/pokeball.svg" alt="Pokeball icon" />
 </template>
 

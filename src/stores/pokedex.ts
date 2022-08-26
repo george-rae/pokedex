@@ -20,10 +20,7 @@ export const usePokedexStore = defineStore({
   },
   actions: {
     changeGen(gen: number) {
-      // state.$reset completely breaks the app
-      // this is just manually resetting the state variables needed.
-      this.pokemons = [];
-      this.currentLength = 0;
+      this.$reset();
       this.ID = gen;
     },
     async fetchPokemon(ID: number) {
