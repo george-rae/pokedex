@@ -4,6 +4,7 @@ import { usePokedexStore } from "@/stores/pokedex";
 import useDetailsStore from "@/stores/details";
 import PokemonCard from "@/components/PokemonCard.vue";
 import PokeHeader from "@/components/PokeHeader.vue";
+import detailsLink from "@/composables/detailsLink";
 
 const pokedex = usePokedexStore();
 pokedex.fetchPokemon(pokedex.ID);
@@ -35,25 +36,6 @@ onMounted(() => {
     details.loading = false;
   }, 2000);
 });
-</script>
-
-<script lang="ts">
-export default {
-  methods: {
-    detailsLink(name: string) {
-      const details = useDetailsStore();
-      details.loading = true;
-      details.assignPokemon(name);
-
-      const pokedex = usePokedexStore();
-
-      setTimeout(() => {
-        pokedex.$reset();
-        this.$router.push({ name: "details", params: { pokemon: name } });
-      }, 1500);
-    },
-  },
-};
 </script>
 
 <template>

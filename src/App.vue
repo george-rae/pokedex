@@ -8,7 +8,6 @@ const loaded = computed(() => {
   const loading = useDetailStore();
   return loading.getLoading;
 });
-
 </script>
 
 <template>
