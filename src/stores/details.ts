@@ -6,7 +6,9 @@ export default defineStore({
   id: "details",
   state: (): Details => ({
     name: "",
+    id: 0,
     loading: "",
+    evolution_chain: "",
     details: [],
   }),
   getters: {
@@ -21,10 +23,12 @@ export default defineStore({
       const species: any = await fetchData("pokemon-species", name);
       const APIName: string = species.varieties[0].pokemon.name;
       this.name = APIName;
+      this.evolution_chain = species.evolution_chain.url;
     },
-    async fetchDetails(name: string) {
-      const details: any = await fetchData("pokemon", name);
-      this.details = details;
+    async fetchDetails(pokemonName: string) {
+      const details: any = await fetchData("pokemon", pokemonName);
+      const target = { name: details.name, id: details.id, details: details };
+      Object.assign(this, target);
 
       return details;
     },

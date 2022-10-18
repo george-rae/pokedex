@@ -49,6 +49,7 @@ onMounted(() => {
           :name="pokemon.pokemon_species.name"
           :entry="pokemon.entry_number"
           @click="detailsLink(pokemon.pokemon_species.name)"
+          v-cloak
         >
         </PokemonCard>
         <div class="observer-pixel" ref="obs" />
