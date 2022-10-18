@@ -1,6 +1,6 @@
 interface Details {
   name: string;
-  loading: boolean;
+  loading: boolean | string;
   details: [];
 }
 

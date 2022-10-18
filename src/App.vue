@@ -12,7 +12,14 @@ const loaded = computed(() => {
 
 <template>
   <RouterView />
-  <PokeLoading :class="{ unloaded: !loaded, loaded: loaded }" ref="loaded" />
+  <PokeLoading
+    :class="{
+      unloaded: loaded === false,
+      loading: loaded,
+      initial: loaded === '',
+    }"
+    ref="loaded"
+  />
   <img class="background-pokeball" src="/pokeball.svg" alt="Pokeball icon" />
 </template>
 

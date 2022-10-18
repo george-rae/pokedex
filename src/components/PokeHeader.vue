@@ -1,23 +1,32 @@
 <script setup lang="ts">
 import { usePokedexStore } from "@/stores/pokedex";
+import useDetailsStore from "@/stores/details";
 import type GenerationGroup from "@/types/pokemon";
 import generations from "@/data/generations";
 const pokedex = usePokedexStore();
+const details = useDetailsStore();
 
 const updateGen = (evt: Event, ID: number | GenerationGroup) => {
   const target = evt.target as HTMLElement;
   if (Array.isArray(ID)) {
     target.classList.toggle("dropdown-active");
   } else {
-    pokedex.changeGen(ID as number);
-    pokedex.fetchPokemon(ID as number);
-    removeClass(evt);
+    details.loading = true;
+    setTimeout(() => {
+      pokedex.changeGen(ID as number);
+      pokedex.fetchPokemon(ID as number);
+      removeClass(evt);
+    }, 1000);
+
+    setTimeout(() => {
+      details.loading = false;
+    }, 2000);
   }
 };
 
 const removeClass = (evt: Event) => {
   const target = evt.target as HTMLElement;
-  const remove = target.closest(".dropdown-active") || target as HTMLElement;
+  const remove = target.closest(".dropdown-active") || (target as HTMLElement);
   remove.classList.remove("dropdown-active");
 };
 </script>

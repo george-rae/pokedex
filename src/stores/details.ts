@@ -6,7 +6,7 @@ export default defineStore({
   id: "details",
   state: (): Details => ({
     name: "",
-    loading: true,
+    loading: "",
     details: [],
   }),
   getters: {
