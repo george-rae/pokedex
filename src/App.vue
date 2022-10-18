@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
+import router from "@/router";
 import { computed } from "vue";
 import useDetailStore from "@/stores/details";
 import PokeLoading from "@/components/PokeLoading.vue";

@@ -11,6 +11,7 @@ export default function detailsLink(name: string) {
 
   setTimeout(() => {
     pokedex.$reset();
+    sessionStorage.setItem("currentName", name);
     router.push({ name: "details", params: { pokemon: name } });
   }, 1500);
 }

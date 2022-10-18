@@ -1,22 +1,30 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import useDetailsStore from "@/stores/details";
+import { ConstantTypes } from "@vue/compiler-core";
 
-const detail = useDetailsStore();
-
-const details = computed(() => {
-  detail.fetchDetails(detail.getCurrentName);
-  const info = detail.getDetails;
-
-  return info;
-});
+const details = useDetailsStore();
 
 setTimeout(() => {
-  detail.loading = false;
+  details.loading = false;
 }, 1000);
 
+const url = window.location.href;
+const fallback = url.split("/").pop() as string;
+const stateName = details.getCurrentName as string;
+
+const name = stateName != fallback || !stateName ? fallback : stateName;
+
+details.fetchDetails(name);
+
+const detail = computed(() => {
+  const info = details.getDetails;
+  return info;
+});
 </script>
 
 <template>
-  <main>{{ details }}</main>
+  <Suspense>
+    <main ref="detail">{{ detail }}</main>
+  </Suspense>
 </template>
