@@ -10,7 +10,8 @@
 
   pointer-events: none;
 
-  .loading-background__left, .loading-background__right {
+  .loading-background__left,
+  .loading-background__right {
     position: absolute;
     top: -10vh;
     left: 0;
@@ -25,38 +26,45 @@
   }
 
   .loading-background__right {
-    background: #c12026;
     transform: translateX(0);
-    
-    z-index: 1;
+    background: #c12026;
   }
 
-  &.loaded {
-    pointer-events: auto;
-    user-select: none;
-
-    .loading-background__left {      
+  &.loading {
+    z-index: 20;
+    .loading-background__left {
       animation: slideFromLeft 1000ms ease-in-out 1 forwards;
     }
 
     .loading-background__right {
       animation: slideFromRight 1000ms ease-in-out 1 forwards;
     }
-  }
 
+    figcaption {
+      opacity: 1;
+      transition: opacity 250ms ease-in-out 500ms;
+    }
+  }
 
   &.unloaded {
     .loading-background__left {
       animation: slideLeft 1000ms ease-in-out 1 forwards;
     }
-  
+
     .loading-background__right {
       animation: slideRight 1000ms ease-in-out 1 forwards;
     }
 
     figcaption {
       opacity: 0;
-      animation: fadeIn 0ms ease-in-out 1 reverse;
+      transition: opacity 250ms ease-in-out;
+    }
+  }
+
+  &.initial {
+    figcaption {
+      opacity: 1;
+      transition: opacity 250ms ease-in-out 750ms;
     }
   }
 
@@ -72,7 +80,7 @@
     opacity: 0;
     z-index: 10;
 
-    animation: fadeIn 250ms ease-in-out 1 forwards 750ms;
+    transition: opacity 250ms ease-in-out;
 
     span {
       position: relative;
@@ -83,7 +91,7 @@
 
       user-select: none;
 
-      animation: sway 750ms linear infinite 1000ms;
+      animation: sway 750ms linear infinite;
 
       &:last-child {
         margin-right: 0;
@@ -92,7 +100,7 @@
 
     @for $i from 1 to 11 {
       span:nth-child(#{$i}) {
-        animation-delay: calc(1000ms + (#{$i * 50ms}));
+        animation-delay: calc(#{$i * 50ms});
       }
     }
   }
@@ -109,7 +117,7 @@
 
 @keyframes slideFromRight {
   from {
-    transform: translateX(100%);
+    transform: translateX(100vw);
   }
   to {
     transform: translateX(0);
@@ -124,13 +132,7 @@
 
 @keyframes slideRight {
   to {
-    transform: translateX(100%);
-  }
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
+    transform: translateX(100vw);
   }
 }
 

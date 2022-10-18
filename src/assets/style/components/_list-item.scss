@@ -10,12 +10,15 @@
   background-size: auto 150%;
   background-position: 25% 25%;
   background-repeat: no-repeat;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
 
   overflow: hidden;
   cursor: pointer;
   opacity: 0;
 
   animation: fadeIn 450ms linear 1 forwards;
+
+  transition: all 0.3s ease-in-out;
 
   @for $i from 1 to 13 {
     &:nth-child(12n + #{$i}) {
@@ -51,6 +54,10 @@
 
       .list-item__entry {
         color: $colour;
+      }
+
+      &:hover {
+        background-color: darken($colour, 10%);
       }
     }
   }
@@ -104,6 +111,18 @@
     position: relative;
     width: 100%;
     z-index: 2;
+
+    transform: scale(1);
+    transition: all 0.3s ease-in-out;
+  }
+
+  &:hover {
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    img {
+      transform: scale(1.1);
+      transition: all 0.3s ease-in-out;
+    }
   }
 }
 
