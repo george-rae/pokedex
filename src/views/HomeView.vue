@@ -9,8 +9,6 @@ import detailsLink from "@/composables/detailsLink";
 const pokedex = usePokedexStore();
 pokedex.fetchPokemon(pokedex.ID);
 
-const details = useDetailsStore();
-
 const pokemons = computed(() => {
   return pokedex.getPokemon;
 });
@@ -31,10 +29,6 @@ onMounted(() => {
   });
 
   observer.observe(obs.value as Element);
-
-  setTimeout(() => {
-    details.loading = false;
-  }, 2000);
 });
 </script>
 

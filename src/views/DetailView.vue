@@ -30,6 +30,10 @@ const log = ref<Element | null>();
 const toggle = () => {
   document.querySelector(".jv-container")!.classList.toggle("js-active");
 };
+
+setTimeout(() => {
+  details.loading = false;
+}, 2000);
 </script>
 
 <template>

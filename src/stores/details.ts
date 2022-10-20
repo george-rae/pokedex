@@ -24,6 +24,7 @@ export default defineStore({
       const APIName: string = species.varieties[0].pokemon.name;
       this.name = APIName;
       this.evolution_chain = species.evolution_chain.url;
+      window.localStorage.setItem("currentName", APIName);
     },
     async fetchDetails(pokemonName: string) {
       const details: any = await fetchData("pokemon", pokemonName);
