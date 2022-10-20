@@ -3,7 +3,11 @@ interface Details {
   id: number;
   loading: boolean | string;
   evolution_chain: string;
-  details: [];
+  details: PokeDetails | [];
+}
+
+export interface PokeDetails {
+  types: list;
 }
 
 export default Details;

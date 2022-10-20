@@ -24,7 +24,7 @@ export const usePokedexStore = defineStore({
       this.ID = gen;
     },
     async fetchPokemon(ID: number) {
-      const currentLength = this.currentLength;
+      const { currentLength } = this;
       const inc = 12;
 
       const pokemon: any = await fetchData("pokedex", ID);

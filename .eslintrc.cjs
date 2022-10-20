@@ -19,7 +19,9 @@ module.exports = {
     "no-nested-ternary": 0,
     "no-prototype-builtins": 0,
     "@typescript-eslint/ban-types": 0,
+    "@typescript-eslint/no-explicit-any": 0,
     "no-param-reassign": 0,
     "vue/script-setup-uses-vars": 0,
+    "import/prefer-default-export": 0,
   },
 };

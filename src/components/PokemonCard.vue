@@ -19,7 +19,7 @@ const { sprite, types, ID } = await details.value;
     <h2 class="list-item__name">{{ name }}</h2>
     <h3 class="list-item__id">#{{ ID }}</h3>
     <span class="list-item__entry">Entry: #{{ entry }}</span>
-    <img :src="sprite" />
+    <img :src="sprite" alt="{{name}} sprite" />
     <div class="list-item__types">
       <p v-for="type in types" :key="type">
         {{ type.type.name }}

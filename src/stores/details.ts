@@ -28,7 +28,7 @@ export default defineStore({
     },
     async fetchDetails(pokemonName: string) {
       const details: any = await fetchData("pokemon", pokemonName);
-      const target = { name: details.name, id: details.id, details: details };
+      const target = { name: details.name, id: details.id, details };
       Object.assign(this, target);
 
       return details;

@@ -1,8 +1,10 @@
+<!-- eslint-disable vuejs-accessibility/click-events-have-key-events -->
 <script setup lang="ts">
 import { usePokedexStore } from "@/stores/pokedex";
 import useDetailsStore from "@/stores/details";
 import type GenerationGroup from "@/types/pokemon";
 import generations from "@/data/generations";
+
 const pokedex = usePokedexStore();
 const details = useDetailsStore();
 

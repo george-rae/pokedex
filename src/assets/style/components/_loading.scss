@@ -8,8 +8,6 @@
 
   z-index: 10;
 
-  pointer-events: none;
-
   .loading-background__left,
   .loading-background__right {
     position: absolute;
@@ -47,6 +45,7 @@
   }
 
   &.unloaded {
+    pointer-events: none;
     .loading-background__left {
       animation: slideLeft 1000ms ease-in-out 1 forwards;
     }

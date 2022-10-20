@@ -2,6 +2,7 @@
 import { computed, ref } from "vue";
 import useDetailsStore from "@/stores/details";
 import router from "@/router";
+import PokeDetail from "@/components/PokeDetail.vue";
 
 const details = useDetailsStore();
 
@@ -13,7 +14,7 @@ const url = window.location.href;
 const fallback = url.split("/").pop() as string;
 const stateName = details.getCurrentName as string;
 
-const name = stateName != fallback || !stateName ? fallback : stateName;
+const name = stateName !== fallback || !stateName ? fallback : stateName;
 
 if (!name || name === "") router.back();
 
@@ -28,7 +29,7 @@ const detail = computed(() => {
 // THIS WILL GO
 const log = ref<Element | null>();
 const toggle = () => {
-  document.querySelector(".jv-container")!.classList.toggle("js-active");
+  document.querySelector(".jv-container")?.classList.toggle("js-active");
 };
 
 setTimeout(() => {
@@ -48,6 +49,7 @@ setTimeout(() => {
         sort
         ref="log"
       ></json-viewer>
+      <PokeDetail :detail="detail"></PokeDetail>
     </main>
   </Suspense>
 </template>
@@ -60,8 +62,10 @@ setTimeout(() => {
 
 main {
   position: relative;
+
   height: 100%;
   width: 100%;
+  padding: 40px;
 }
 
 button {

@@ -1,0 +1,41 @@
+.detail-card {
+  --type-colour: #fff;
+  width: clamp(100%, 100%, 1440px);
+  height: clamp(100%, 100%, 900px);
+
+  background: linear-gradient(
+    to bottom,
+    var(--type-colour) 60%,
+    rgba(#fff, 0.8) 60%,
+    rgba(#fff, 0.8)
+  );
+  border-radius: 20px;
+  border: 2px solid var(--type-colour);
+
+  $types: (
+    "normal": $colour-normal,
+    "fire": $colour-fire,
+    "water": $colour-water,
+    "electric": $colour-electric,
+    "grass": $colour-grass,
+    "ice": $colour-ice,
+    "fighting": $colour-fighting,
+    "poison": $colour-poison,
+    "ground": $colour-ground,
+    "flying": $colour-flying,
+    "psychic": $colour-psychic,
+    "bug": $colour-bug,
+    "rock": $colour-rock,
+    "ghost": $colour-ghost,
+    "dragon": $colour-dragon,
+    "dark": $colour-dark,
+    "steel": $colour-steel,
+    "fairy": $colour-fairy,
+  );
+
+  @each $type, $colour in $types {
+    &--#{$type} {
+      --type-colour: #{rgba($colour, 0.8)};
+    }
+  }
+}
