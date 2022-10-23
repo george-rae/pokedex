@@ -11,11 +11,7 @@ const loading = generateLetters("Loading...");
       src="/background--pokedex-left.png"
       alt="pokedex left loading background image"
     />
-    <img
-      class="loading-background__right"
-      src="/background--pokedex-right.png"
-      alt="pokedex right loading background image"
-    />
+    <div class="loading-background__right"></div>
     <figcaption>
       <span v-for="(letters, index) in loading" :key="index">
         {{ letters }}

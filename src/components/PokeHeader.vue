@@ -49,12 +49,10 @@ const removeClass = (evt: Event) => {
       >
         {{ generation.label }}
         <ul class="gen-dropdown" v-if="Array.isArray(generation.ID)">
-          <li
-            v-for="gendropdown in generation.ID"
-            @click="updateGen($event, gendropdown.ID)"
-            :key="gendropdown.label"
-          >
-            {{ gendropdown.label }}
+          <li v-for="gendropdown in generation.ID" :key="gendropdown.label">
+            <button @click="updateGen($event, gendropdown.ID)" type="button">
+              {{ gendropdown.label }}
+            </button>
           </li>
         </ul>
       </button>
@@ -64,11 +62,20 @@ const removeClass = (evt: Event) => {
 
 <style lang="scss" scoped>
 @import "@/assets/style/vars";
+
 header {
   position: relative;
 
   @include flex-y(space-between, center);
   gap: 12px;
   z-index: 2;
+
+  @media screen and (min-width: 320px) {
+    padding: 10px 20px 0;
+    img {
+      width: clamp(300px, 90%, 387px);
+      height: auto;
+    }
+  }
 }
 </style>

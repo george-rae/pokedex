@@ -8,33 +8,33 @@
 
   z-index: 10;
 
-  .loading-background__left,
-  .loading-background__right {
+  &__left,
+  &__right {
     position: absolute;
     top: -10vh;
     left: 0;
 
     height: 110vh;
     width: auto;
+
+    transform: translateX(0);
   }
 
-  .loading-background__left {
-    transform: translateX(0);
+  &__left {
     z-index: 2;
   }
 
-  .loading-background__right {
-    transform: translateX(0);
+  &__right {
     background: #c12026;
   }
 
   &.loading {
     z-index: 20;
-    .loading-background__left {
+    & > .loading-background__left {
       animation: slideFromLeft 1000ms ease-in-out 1 forwards;
     }
 
-    .loading-background__right {
+    & > .loading-background__right {
       animation: slideFromRight 1000ms ease-in-out 1 forwards;
     }
 
@@ -46,11 +46,11 @@
 
   &.unloaded {
     pointer-events: none;
-    .loading-background__left {
+    & > .loading-background__left {
       animation: slideLeft 1000ms ease-in-out 1 forwards;
     }
 
-    .loading-background__right {
+    & > .loading-background__right {
       animation: slideRight 1000ms ease-in-out 1 forwards;
     }
 
@@ -103,6 +103,51 @@
       }
     }
   }
+
+  @media screen and (min-width: 320px) {
+    top: calc(50% - 50vw);
+    left: calc(50% - 50vh);
+
+    height: 100vw;
+    width: 100vh;
+
+    transform: rotate(90deg);
+
+    &__left,
+    &__right {
+      top: 50%;
+      transform: translateY(-75%);
+    }
+
+    &__right {
+      width: 100vh;
+    }
+
+    figcaption {
+      right: 0;
+
+      font-size: clamp(25px, 10vw, 125px);
+      transform: rotate(-90deg) translateX(10%);
+    }
+
+    &.unloaded {
+      & > .loading-background__left {
+        animation: slideLeftM 1000ms ease-in-out 1 forwards;
+      }
+
+      & > .loading-background__right {
+        animation: slideRightM 1000ms ease-in-out 1 forwards;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    &__right {
+      width: 100vw;
+
+      transform: translateX(0);
+    }
+  }
 }
 
 @keyframes slideFromLeft {
@@ -131,7 +176,19 @@
 
 @keyframes slideRight {
   to {
-    transform: translateX(100%);
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes slideLeftM {
+  to {
+    transform: translate(-100vh, -75%);
+  }
+}
+
+@keyframes slideRightM {
+  to {
+    transform: translate(100vh, -75%);
   }
 }
 
