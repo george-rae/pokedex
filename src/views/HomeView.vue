@@ -20,9 +20,9 @@ const obs = ref<Element | null>(null);
 onMounted(() => {
   const observer = new IntersectionObserver((list) => {
     const { boundingClientRect, isIntersecting } = list[0];
-
+    const location = window.screen.width <= 1024 ? 850 : 950;
     if (
-      boundingClientRect.y >= 950 &&
+      boundingClientRect.y >= location &&
       !(pokemons.value.length === 0) &&
       isIntersecting
     ) {
@@ -99,5 +99,16 @@ main {
 
   margin: 0 auto;
   padding-bottom: 20px;
+}
+
+@media screen and (min-width: 320px) {
+  main {
+    padding: 20px 15px 25px;
+  }
+
+  .card-list {
+    grid-template-columns: repeat(2, calc(50% - 5px));
+    gap: 10px;
+  }
 }
 </style>

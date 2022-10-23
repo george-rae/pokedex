@@ -139,6 +139,16 @@
         animation: slideRightM 1000ms ease-in-out 1 forwards;
       }
     }
+
+    &.loading {
+      & > .loading-background__left {
+        animation: slideFromLeftM 1000ms ease-in-out 1 forwards;
+      }
+
+      & > .loading-background__right {
+        animation: slideFromRightM 1000ms ease-in-out 1 forwards;
+      }
+    }
   }
 
   @media screen and (min-width: 1280px) {
@@ -177,6 +187,24 @@
 @keyframes slideRight {
   to {
     transform: translateX(100vw);
+  }
+}
+
+@keyframes slideFromLeftM {
+  from {
+    transform: translate(-100vh, -75%);
+  }
+  to {
+    transform: translate(0, -75%);
+  }
+}
+
+@keyframes slideFromRightM {
+  from {
+    transform: translate(100vh, -75%);
+  }
+  to {
+    transform: translate(0, -75%);
   }
 }
 
