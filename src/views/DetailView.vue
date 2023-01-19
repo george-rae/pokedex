@@ -19,12 +19,14 @@ const name = stateName !== fallback || !stateName ? fallback : stateName;
 if (!name || name === "") router.back();
 
 details.assignPokemon(name);
-details.fetchDetails(name);
 
-const detail = computed(() => {
-  const info = details.getDetails;
+const response = computed(() => {
+  const info = details.fetchDetails(name);
+
   return info;
 });
+
+const detail = await response.value;
 
 // THIS WILL GO
 const log = ref<Element | null>();
@@ -49,7 +51,7 @@ setTimeout(() => {
         sort
         ref="log"
       ></json-viewer>
-      <PokeDetail :detail="detail"></PokeDetail>
+      <PokeDetail :name="name"></PokeDetail>
     </main>
   </Suspense>
 </template>

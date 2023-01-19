@@ -6,8 +6,14 @@ interface Details {
   details: PokeDetails | [];
 }
 
-export interface PokeDetails {
+export interface PokeTypes {
   types: list;
+  mainType: string;
+  name: string;
+}
+
+export interface PokeDetails {
+  types: PokeTypes | [];
 }
 
 export default Details;

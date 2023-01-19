@@ -116,7 +116,7 @@
     &__left,
     &__right {
       top: 50%;
-      transform: translateY(-75%);
+      transform: translate(0, -50%);
     }
 
     &__right {
@@ -192,31 +192,31 @@
 
 @keyframes slideFromLeftM {
   from {
-    transform: translate(-100vh, -75%);
+    transform: translate(-100vh, -50%);
   }
   to {
-    transform: translate(0, -75%);
+    transform: translate(0, -50%);
   }
 }
 
 @keyframes slideFromRightM {
   from {
-    transform: translate(100vh, -75%);
+    transform: translate(100vh, -50%);
   }
   to {
-    transform: translate(0, -75%);
+    transform: translate(0, -50%);
   }
 }
 
 @keyframes slideLeftM {
   to {
-    transform: translate(-100vh, -75%);
+    transform: translate(-100vh, -50%);
   }
 }
 
 @keyframes slideRightM {
   to {
-    transform: translate(100vh, -75%);
+    transform: translate(100vh, -50%);
   }
 }
 

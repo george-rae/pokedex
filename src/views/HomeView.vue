@@ -26,7 +26,7 @@ onMounted(() => {
         pokedex.fetchPokemon(pokedex.ID);
       }
     },
-    { threshold: 1.0 }
+    { threshold: 1.0 } // This means the entire element needs to be on show.
   );
 
   observer.observe(obs.value as Element);
@@ -68,12 +68,13 @@ main {
   z-index: 1;
 
   &::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
 
     background-color: transparent;
   }
 
   &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
     background: #7d7d7d;
   }
 }
@@ -101,13 +102,24 @@ main {
 
 @media screen and (min-width: 320px) {
   main {
-    padding: 20px 40px 25px;
+    padding: 20px 32px 25px 40px;
     gap: 25px;
   }
 
   .card-list {
     grid-template-columns: 100%;
     gap: 25px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  main {
+    padding: 20px 12px 20px 20px;
+    gap: 20px;
+  }
+
+  .card-list {
+    grid-template-columns: repeat(2, calc(50% - 10px));
   }
 }
 </style>

@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import type { PokeTypes } from "@/types/details";
+import { ref, computed } from "vue";
+import useDetailsStore from "@/stores/details";
 
-const props = defineProps(["detail"]);
+const props = defineProps({
+  name: String,
+});
+const store = useDetailsStore();
 
-const detail = ref<any>();
+const details = computed(() => {
+  const response = store.fetchDetails(props.name as string);
 
-detail.value = {
-  type: props.detail.types,
-  mainType: props.detail.types[0].type.name,
-  name: props.detail.name,
-};
+  return response;
+});
 
-console.log(detail.value);
+const detail = await details.value;
+const mainType = detail.types[0].type.name;
 </script>
 
 <template>
-  <section
-    class="detail-card"
-    :class="`detail-card--${detail.type}`"
-    ref="detail"
-  ></section>
+  <section class="detail-card" :class="`detail-card--${mainType}`"></section>
 </template>

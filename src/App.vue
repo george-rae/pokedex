@@ -11,7 +11,9 @@ const loaded = computed(() => {
 </script>
 
 <template>
-  <RouterView />
+  <Suspense>
+    <RouterView />
+  </Suspense>
   <PokeLoading
     :class="{
       unloaded: loaded === false,

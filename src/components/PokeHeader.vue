@@ -77,5 +77,9 @@ header {
       height: auto;
     }
   }
+
+  @media screen and (min-width: 600px) {
+    padding: 20px 0 0;
+  }
 }
 </style>
