@@ -71,7 +71,7 @@ header {
   z-index: 2;
 
   @media screen and (min-width: 320px) {
-    padding: 10px 20px 0;
+    padding: 10px 10px 0;
     img {
       width: clamp(300px, 90%, 387px);
       height: auto;

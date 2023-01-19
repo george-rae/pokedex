@@ -18,17 +18,16 @@ const pokemons = computed(() => {
 const obs = ref<Element | null>(null);
 
 onMounted(() => {
-  const observer = new IntersectionObserver((list) => {
-    const { boundingClientRect, isIntersecting } = list[0];
-    const location = window.screen.width <= 1024 ? 850 : 950;
-    if (
-      boundingClientRect.y >= location &&
-      !(pokemons.value.length === 0) &&
-      isIntersecting
-    ) {
-      pokedex.fetchPokemon(pokedex.ID);
-    }
-  });
+  const observer = new IntersectionObserver(
+    (list) => {
+      const { isIntersecting } = list[0];
+
+      if (!(pokemons.value.length === 0) && isIntersecting) {
+        pokedex.fetchPokemon(pokedex.ID);
+      }
+    },
+    { threshold: 1.0 }
+  );
 
   observer.observe(obs.value as Element);
 
@@ -61,8 +60,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 main {
   position: relative;
-  min-height: calc(100vh - 220px);
-  max-height: calc(100vh - 220px);
+  height: calc(100vh - 220px);
   width: 100vw;
   padding: 20px 0;
 
@@ -88,27 +86,28 @@ main {
   height: 1px;
   width: 1px;
   pointer-events: none;
+
+  background: black;
 }
+
 .card-list {
   position: relative;
 
   display: grid;
-  grid-template-columns: repeat(4, calc(25% - 11.5px));
-  gap: 15px;
   max-width: 1440px;
 
   margin: 0 auto;
-  padding-bottom: 20px;
 }
 
 @media screen and (min-width: 320px) {
   main {
-    padding: 20px 15px 25px;
+    padding: 20px 40px 25px;
+    gap: 25px;
   }
 
   .card-list {
-    grid-template-columns: repeat(2, calc(50% - 5px));
-    gap: 10px;
+    grid-template-columns: 100%;
+    gap: 25px;
   }
 }
 </style>
