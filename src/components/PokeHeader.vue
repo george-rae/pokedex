@@ -8,15 +8,21 @@ import generations from "@/data/generations";
 const pokedex = usePokedexStore();
 const details = useDetailsStore();
 
+const removeClass = (evt: Event) => {
+  const target = evt.target as HTMLElement;
+  const remove = target.closest(".dropdown-active") || (target as HTMLElement);
+  remove.classList.remove("dropdown-active");
+};
+
 const updateGen = (evt: Event, ID: number | GenerationGroup) => {
   const target = evt.target as HTMLElement;
   if (Array.isArray(ID)) {
     target.classList.toggle("dropdown-active");
   } else {
     details.loading = true;
-    setTimeout(() => {
+    setTimeout(async () => {
       pokedex.changeGen(ID as number);
-      pokedex.fetchPokemon(ID as number);
+      await pokedex.fetchPokemon(ID as number);
       removeClass(evt);
     }, 1000);
 
@@ -24,12 +30,6 @@ const updateGen = (evt: Event, ID: number | GenerationGroup) => {
       details.loading = false;
     }, 2000);
   }
-};
-
-const removeClass = (evt: Event) => {
-  const target = evt.target as HTMLElement;
-  const remove = target.closest(".dropdown-active") || (target as HTMLElement);
-  remove.classList.remove("dropdown-active");
 };
 </script>
 

@@ -14,14 +14,21 @@ module.exports = {
   },
   plugins: ["@typescript-eslint", "prettier"],
   rules: {
-    camelcase: 0,
+    // @module overwrites
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/ban-types": 0,
+    // generic module overwrites
+    "vue/script-setup-uses-vars": 0,
+    "import/prefer-default-export": 0,
+    "prettier/prettier": ["error", { endOfLine: "auto" }],
+    "import/no-unresolved": 0,
+    "import/extensions": 0,
+    // built in eslint overwrites
     "no-use-before-define": 0,
     "no-nested-ternary": 0,
     "no-prototype-builtins": 0,
-    "@typescript-eslint/ban-types": 0,
-    "@typescript-eslint/no-explicit-any": 0,
     "no-param-reassign": 0,
-    "vue/script-setup-uses-vars": 0,
-    "import/prefer-default-export": 0,
+    "no-return-assignment": 0,
+    camelcase: 0,
   },
 };

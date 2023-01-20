@@ -1,13 +1,9 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
-import { computed } from "vue";
 import useDetailStore from "@/stores/details";
 import PokeLoading from "@/components/PokeLoading.vue";
 
-const loaded = computed(() => {
-  const loading = useDetailStore();
-  return loading.getLoading;
-});
+const state = useDetailStore();
 </script>
 
 <template>
@@ -16,9 +12,9 @@ const loaded = computed(() => {
   </Suspense>
   <PokeLoading
     :class="{
-      unloaded: loaded === false,
-      loading: loaded,
-      initial: loaded === '',
+      unloaded: state.loading === false,
+      loading: state.loading,
+      initial: state.loading === '',
     }"
     ref="loaded"
   />

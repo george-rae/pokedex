@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import useDetailsStore from "@/stores/details";
 import router from "@/router";
 import PokeDetail from "@/components/PokeDetail.vue";
@@ -20,13 +20,7 @@ if (!name || name === "") router.back();
 
 details.assignPokemon(name);
 
-const response = computed(() => {
-  const info = details.fetchDetails(name);
-
-  return info;
-});
-
-const detail = await response.value;
+const detail = await details.fetchDetails(name);
 
 // THIS WILL GO
 const log = ref<Element | null>();

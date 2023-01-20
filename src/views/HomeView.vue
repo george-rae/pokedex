@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, computed, ref } from "vue";
+import { onMounted, ref } from "vue";
 import { usePokedexStore } from "@/stores/pokedex";
 import useDetailsStore from "@/stores/details";
 import PokemonCard from "@/components/PokemonCard.vue";
@@ -7,14 +7,10 @@ import PokeHeader from "@/components/PokeHeader.vue";
 import detailsLink from "@/composables/detailsLink";
 
 const pokedex = usePokedexStore();
-pokedex.fetchPokemon(pokedex.ID);
+await pokedex.fetchPokemon(pokedex.ID);
+const pokemons = pokedex.getPokemon;
 
 const details = useDetailsStore();
-
-const pokemons = computed(() => {
-  return pokedex.getPokemon;
-});
-
 const obs = ref<Element | null>(null);
 
 onMounted(() => {
@@ -22,7 +18,7 @@ onMounted(() => {
     (list) => {
       const { isIntersecting } = list[0];
 
-      if (!(pokemons.value.length === 0) && isIntersecting) {
+      if (!(pokemons.length === 0) && isIntersecting) {
         pokedex.fetchPokemon(pokedex.ID);
       }
     },
@@ -39,22 +35,20 @@ onMounted(() => {
 
 <template>
   <PokeHeader />
-  <Suspense>
-    <main>
-      <ul class="card-list">
-        <PokemonCard
-          v-for="pokemon in pokemons"
-          :key="pokemon.entry_number"
-          :name="pokemon.pokemon_species.name"
-          :entry="pokemon.entry_number"
-          @click="detailsLink(pokemon.pokemon_species.name)"
-          v-cloak
-        >
-        </PokemonCard>
-        <div class="observer-pixel" ref="obs" />
-      </ul>
-    </main>
-  </Suspense>
+  <main>
+    <ul class="card-list">
+      <PokemonCard
+        v-for="pokemon in pokedex.pokemons"
+        :key="pokemon.entry_number"
+        :name="pokemon.pokemon_species.name"
+        :entry="pokemon.entry_number"
+        @click="detailsLink(pokemon.pokemon_species.name)"
+        v-cloak
+      >
+      </PokemonCard>
+      <div class="observer-pixel" ref="obs" />
+    </ul>
+  </main>
 </template>
 
 <style lang="scss" scoped>
@@ -87,8 +81,6 @@ main {
   height: 1px;
   width: 1px;
   pointer-events: none;
-
-  background: black;
 }
 
 .card-list {
@@ -100,10 +92,10 @@ main {
   margin: 0 auto;
 }
 
+// MOBILE
 @media screen and (min-width: 320px) {
   main {
     padding: 20px 32px 25px 40px;
-    gap: 25px;
   }
 
   .card-list {
@@ -112,14 +104,25 @@ main {
   }
 }
 
+// TABLET
 @media screen and (min-width: 600px) {
   main {
     padding: 20px 12px 20px 20px;
-    gap: 20px;
   }
 
   .card-list {
-    grid-template-columns: repeat(2, calc(50% - 10px));
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  main {
+    padding: 20px 12px 20px 20px;
+  }
+
+  .card-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
   }
 }
 </style>

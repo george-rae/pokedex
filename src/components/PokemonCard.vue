@@ -1,17 +1,11 @@
 <script setup lang="ts">
-import { computed } from "vue";
 import { usePokedexStore } from "@/stores/pokedex";
 
 const pokedex = usePokedexStore();
 
 const props = defineProps(["name", "entry"]);
-const details = computed(() => {
-  const cardDetails = pokedex.fetchMinorDetails(props.name);
-
-  return cardDetails;
-});
-
-const { sprite, types, ID } = await details.value;
+const details = await pokedex.fetchMinorDetails(props.name);
+const { sprite, types, ID } = details;
 </script>
 
 <template>
