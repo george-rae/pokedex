@@ -56,9 +56,9 @@
       background: url("/type-icons/#{$type-primary}.svg"),
         linear-gradient(
           225deg,
-          darken($colour-primary, 15%) 25%,
-          $colour-primary 75%,
-          lighten($colour-primary, 15%)
+          lighten($colour-primary, 10%) 25%,
+          $colour-primary 60%,
+          darken($colour-primary, 25%)
         );
       @include background;
       transition: all 0.3s ease-in-out;
