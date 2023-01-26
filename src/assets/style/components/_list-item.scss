@@ -7,9 +7,6 @@
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.25));
   border-radius: 10px;
 
-  background-size: auto 150%;
-  background-position: 25% 25%;
-  background-repeat: no-repeat;
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
 
   overflow: hidden;
@@ -47,17 +44,41 @@
     "fairy": $colour-fairy,
   );
 
-  @each $type, $colour in $types {
-    &--#{$type} {
-      background-color: $colour;
-      background-image: url("/type-icons/#{$type}.svg");
+  @mixin background {
+    background-repeat: no-repeat;
+    background-position: 25% 25%;
+    background-size: auto 150%;
+  }
+
+  @each $type-primary, $colour-primary in $types {
+    // If there is only one type.
+    &--#{$type-primary} {
+      background: url("/type-icons/#{$type-primary}.svg"),
+        linear-gradient(
+          225deg,
+          darken($colour-primary, 15%) 25%,
+          $colour-primary 75%,
+          lighten($colour-primary, 15%)
+        );
+      @include background;
+      transition: all 0.3s ease-in-out;
 
       .list-item__entry {
-        color: $colour;
+        color: $colour-primary;
       }
+    }
 
-      &:hover {
-        background-color: darken($colour, 10%);
+    // If there is more than one type
+    @each $type-secondary, $colour-secondary in $types {
+      &--#{$type-primary}-#{$type-secondary} {
+        background: url("/type-icons/#{$type-primary}.svg"),
+          linear-gradient(225deg, $colour-primary, $colour-secondary);
+        @include background;
+        transition: all 0.3s ease-in-out;
+
+        .list-item__entry {
+          color: $colour-secondary;
+        }
       }
     }
   }
@@ -84,7 +105,7 @@
     border-top-right-radius: 5px;
 
     font-size: 12px;
-    font-weight: 3400;
+    font-weight: 300;
 
     background: rgba(255, 255, 255, 0.85);
   }
@@ -116,12 +137,33 @@
     transition: all 0.3s ease-in-out;
   }
 
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+
+    background: rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease-in-out;
+  }
+
   &:hover {
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease-in-out;
+
     img {
       transform: scale(1.1);
       transition: all 0.3s ease-in-out;
+    }
+
+    &::before {
+      opacity: 1;
+      transition: opacity 0.3s ease-in-out;
     }
   }
 

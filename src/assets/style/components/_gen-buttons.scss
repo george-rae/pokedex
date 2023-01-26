@@ -2,7 +2,10 @@
   @include flex-x(center, center, wrap);
   gap: 10px;
 
+  // VARIABLES
   $font-size: clamp(12px, 4vw, 18px);
+  $button-radius: 5px;
+
   .gen-buttons__button {
     --background: #fff;
     position: relative;
@@ -18,7 +21,7 @@
 
     background: var(--background);
     border: 0;
-    border-radius: 5px;
+    border-radius: $button-radius;
 
     cursor: pointer;
 
@@ -32,13 +35,17 @@
       }
     }
 
-    &.dropdown-active > .gen-dropdown {
-      opacity: 1;
-      pointer-events: auto;
-
+    &.dropdown-active {
       z-index: 10;
 
-      transition: all 0.33s ease-in-out;
+      & > .gen-dropdown {
+        opacity: 1;
+        pointer-events: auto;
+
+        z-index: 10;
+
+        transition: all 0.33s ease-in-out;
+      }
     }
 
     .gen-dropdown {
@@ -54,6 +61,7 @@
       opacity: 0;
       pointer-events: none;
       background: var(--background);
+      border-radius: 0 $button-radius $button-radius $button-radius;
 
       transition: all 0.33s ease-in-out;
 

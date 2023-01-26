@@ -1,23 +1,16 @@
 .loading-background {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
 
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 
   z-index: 10;
 
   &__left,
   &__right {
     position: absolute;
-    top: -10vh;
-    left: 0;
-
-    height: 110vh;
-    width: auto;
-
-    transform: translateX(0);
   }
 
   &__left {
@@ -25,19 +18,14 @@
   }
 
   &__right {
+    height: 100vh;
+    width: 100vw;
+
     background: #c12026;
   }
 
   &.loading {
     z-index: 20;
-    & > .loading-background__left {
-      animation: slideFromLeft 1000ms ease-in-out 1 forwards;
-    }
-
-    & > .loading-background__right {
-      animation: slideFromRight 1000ms ease-in-out 1 forwards;
-    }
-
     figcaption {
       opacity: 1;
       transition: opacity 250ms ease-in-out 500ms;
@@ -46,13 +34,6 @@
 
   &.unloaded {
     pointer-events: none;
-    & > .loading-background__left {
-      animation: slideLeft 1000ms ease-in-out 1 forwards;
-    }
-
-    & > .loading-background__right {
-      animation: slideRight 1000ms ease-in-out 1 forwards;
-    }
 
     figcaption {
       opacity: 0;
@@ -69,12 +50,10 @@
 
   figcaption {
     position: absolute;
-    top: 50%;
-    right: 10%;
 
-    font-size: 125px;
+    font-size: clamp(25px, 10vw, 125px);
     color: #fff;
-    font-weight: bold;
+    font-weight: 700;
 
     opacity: 0;
     z-index: 10;
@@ -105,29 +84,20 @@
   }
 
   @media screen and (min-width: 320px) {
-    top: calc(50% - 50vw);
-    left: calc(50% - 50vh);
+    &__left {
+      top: -25vh;
 
-    height: 100vw;
-    width: 100vh;
+      width: 75vh;
 
-    transform: rotate(90deg);
-
-    &__left,
-    &__right {
-      top: 50%;
-      transform: translate(0, -50%);
-    }
-
-    &__right {
-      width: 100vh;
+      transform: rotate(90deg);
     }
 
     figcaption {
-      right: 0;
+      bottom: 15%;
 
-      font-size: clamp(25px, 10vw, 125px);
-      transform: rotate(-90deg) translateX(10%);
+      width: 100%;
+
+      text-align: center;
     }
 
     &.unloaded {
@@ -151,15 +121,85 @@
     }
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1024px) {
+    top: 0;
+    left: 0;
+
+    height: 100vh;
+    width: 100vw;
+
+    transform: none;
+
+    &.loading {
+      z-index: 20;
+      & > .loading-background__left {
+        animation: slideFromLeft 1000ms ease-in-out 1 forwards;
+      }
+
+      & > .loading-background__right {
+        animation: slideFromRight 1000ms ease-in-out 1 forwards;
+      }
+
+      figcaption {
+        opacity: 1;
+        transition: opacity 250ms ease-in-out 500ms;
+      }
+    }
+
+    &.unloaded {
+      pointer-events: none;
+      & > .loading-background__left {
+        animation: slideLeft 1000ms ease-in-out 1 forwards;
+      }
+
+      & > .loading-background__right {
+        animation: slideRight 1000ms ease-in-out 1 forwards;
+      }
+
+      figcaption {
+        opacity: 0;
+        transition: opacity 250ms ease-in-out;
+      }
+    }
+
     &__right {
       width: 100vw;
-
-      transform: translateX(0);
     }
   }
 }
 
+// MOBILE KEYFRAMES AS IT COMES FROM TOP/BOTTOM
+@keyframes slideFromLeftM {
+  from {
+    transform: translate(-100vh, -50%);
+  }
+  to {
+    transform: rotate(90deg) translate(0, 0);
+  }
+}
+
+@keyframes slideFromRightM {
+  from {
+    transform: translate(0, 100%);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes slideLeftM {
+  to {
+    transform: translate(-100vh, -50%);
+  }
+}
+
+@keyframes slideRightM {
+  to {
+    transform: translate(0, 100%);
+  }
+}
+
+// DESKTOP KEYFRAMES AS IT WILL COME IN FROM THE SIDES
 @keyframes slideFromLeft {
   from {
     transform: translateX(-100%);
@@ -190,36 +230,7 @@
   }
 }
 
-@keyframes slideFromLeftM {
-  from {
-    transform: translate(-100vh, -50%);
-  }
-  to {
-    transform: translate(0, -50%);
-  }
-}
-
-@keyframes slideFromRightM {
-  from {
-    transform: translate(100vh, -50%);
-  }
-  to {
-    transform: translate(0, -50%);
-  }
-}
-
-@keyframes slideLeftM {
-  to {
-    transform: translate(-100vh, -50%);
-  }
-}
-
-@keyframes slideRightM {
-  to {
-    transform: translate(100vh, -50%);
-  }
-}
-
+// GENERIC KEYFRAMES
 @keyframes sway {
   25% {
     top: 0.25vh;

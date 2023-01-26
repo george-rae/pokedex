@@ -1,6 +1,6 @@
 export interface Generation {
   label: string;
-  ID: number | Generation[];
+  ID: number | string | Generation[];
 }
 
 export interface GenerationGroup {

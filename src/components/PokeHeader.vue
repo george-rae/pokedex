@@ -19,6 +19,7 @@ const updateGen = (evt: Event, ID: number | GenerationGroup) => {
   if (Array.isArray(ID)) {
     target.classList.toggle("dropdown-active");
   } else {
+    removeClass(evt);
     details.loading = true;
     setTimeout(async () => {
       pokedex.changeGen(ID as number);
@@ -43,14 +44,20 @@ const updateGen = (evt: Event, ID: number | GenerationGroup) => {
         v-for="(generation, index) in generations"
         :key="generation.label"
         :class="'gen-buttons__button--' + (index + 1)"
-        :pokedexid="generation.ID"
-        @click="updateGen($event, generation.ID as number)"
-        @blur="removeClass"
+        @click="updateGen($event, generation.ID as number | GenerationGroup)"
       >
         {{ generation.label }}
-        <ul class="gen-dropdown" v-if="Array.isArray(generation.ID)">
+        <ul
+          class="gen-dropdown"
+          v-if="Array.isArray(generation.ID)"
+          @blur="removeClass"
+        >
           <li v-for="gendropdown in generation.ID" :key="gendropdown.label">
-            <button @click="updateGen($event, gendropdown.ID)" type="button">
+            <button
+              @click="updateGen($event, gendropdown.ID)"
+              @blur="removeClass($event)"
+              type="button"
+            >
               {{ gendropdown.label }}
             </button>
           </li>

@@ -2,7 +2,7 @@
 import { onMounted, ref } from "vue";
 import { usePokedexStore } from "@/stores/pokedex";
 import useDetailsStore from "@/stores/details";
-import PokemonCard from "@/components/PokemonCard.vue";
+import PokeCard from "@/components/PokeCard.vue";
 import PokeHeader from "@/components/PokeHeader.vue";
 import detailsLink from "@/composables/detailsLink";
 
@@ -37,7 +37,7 @@ onMounted(() => {
   <PokeHeader />
   <main>
     <ul class="card-list">
-      <PokemonCard
+      <PokeCard
         v-for="pokemon in pokedex.pokemons"
         :key="pokemon.entry_number"
         :name="pokemon.pokemon_species.name"
@@ -45,7 +45,7 @@ onMounted(() => {
         @click="detailsLink(pokemon.pokemon_species.name)"
         v-cloak
       >
-      </PokemonCard>
+      </PokeCard>
       <div class="observer-pixel" ref="obs" />
     </ul>
   </main>
