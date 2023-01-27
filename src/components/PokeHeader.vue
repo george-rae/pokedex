@@ -37,6 +37,9 @@ const updateGen = (evt: Event, ID: number | GenerationGroup) => {
 <template>
   <header>
     <img alt="Pokedex Logo" class="pokedex-logo" src="/logo--pokedex.png" />
+    <!-- THIS IS FOR LATER -->
+    <!-- <div class="scrolling__menu">
+    </div> -->
     <div class="gen-buttons">
       <button
         class="gen-buttons__button"
@@ -47,15 +50,11 @@ const updateGen = (evt: Event, ID: number | GenerationGroup) => {
         @click="updateGen($event, generation.ID as number | GenerationGroup)"
       >
         {{ generation.label }}
-        <ul
-          class="gen-dropdown"
-          v-if="Array.isArray(generation.ID)"
-          @blur="removeClass"
-        >
+        <ul class="gen-dropdown" v-if="Array.isArray(generation.ID)">
           <li v-for="gendropdown in generation.ID" :key="gendropdown.label">
             <button
               @click="updateGen($event, gendropdown.ID)"
-              @blur="removeClass($event)"
+              @blur="removeClass"
               type="button"
             >
               {{ gendropdown.label }}
@@ -80,8 +79,20 @@ header {
   @media screen and (min-width: 320px) {
     padding: 10px 10px 0;
     img {
+      max-width: 387px;
       width: clamp(300px, 90%, 387px);
       height: auto;
+
+      transition: max-width 0.3s ease-in-out;
+    }
+
+    &.content-scrolling {
+      gap: 0;
+      img {
+        max-width: 0px;
+
+        transition: max-width 0.3s ease-in-out;
+      }
     }
   }
 

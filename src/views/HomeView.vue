@@ -13,6 +13,14 @@ const pokemons = pokedex.getPokemon;
 const details = useDetailsStore();
 const obs = ref<Element | null>(null);
 
+const mutateHeader = (evt: Event) => {
+  const header: HTMLElement | null = document.querySelector("header");
+  header?.classList.toggle(
+    "content-scrolling",
+    (evt.target as HTMLElement).scrollTop >= 1
+  );
+};
+
 onMounted(() => {
   const observer = new IntersectionObserver(
     (list) => {
@@ -35,7 +43,7 @@ onMounted(() => {
 
 <template>
   <PokeHeader />
-  <main>
+  <main @scroll="mutateHeader">
     <ul class="card-list">
       <PokeCard
         v-for="pokemon in pokedex.pokemons"
@@ -54,7 +62,6 @@ onMounted(() => {
 <style lang="scss" scoped>
 main {
   position: relative;
-  height: calc(100vh - 220px);
   width: 100vw;
   padding: 20px 0;
 
