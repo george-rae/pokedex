@@ -20,6 +20,7 @@ header {
   position: relative;
 
   width: 100%;
+  max-width: 1440px;
 
   z-index: 2;
 
@@ -27,7 +28,7 @@ header {
     @include flex-x(space-between, center);
     padding: 10px 24px 0;
     img {
-      max-height: 200px;
+      max-height: 140px;
       width: auto;
       height: clamp(5vh, 140px, 10vh);
       flex-shrink: 1;
@@ -39,7 +40,9 @@ header {
     & > .scrolling__menu {
       max-height: 60px;
       height: 60px;
+
       cursor: pointer;
+      transition: max-height 0.5s ease-in-out;
     }
 
     &.content-scrolling {
@@ -53,6 +56,10 @@ header {
   }
 
   @media screen and (min-width: 600px) {
+    padding: 20px 20px 0;
+  }
+
+  @media screen and (min-width: 1490px) {
     padding: 20px 0 0;
   }
 }

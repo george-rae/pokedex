@@ -13,7 +13,6 @@ const updateGen = (evt: Event, ID: number | GenerationGroup) => {
   if (Array.isArray(ID)) {
     (target.parentNode as Element).classList.toggle("dropdown-active");
   } else {
-    console.log(ID);
     details.loading = true;
     setTimeout(async () => {
       menuControl();

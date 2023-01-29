@@ -161,4 +161,14 @@ $accent: #f8f8ff;
       transition: all 0.3s ease-in-out 0.25s;
     }
   }
+
+  @media screen and (min-width: 600px) {
+    width: 400px;
+    left: 100%;
+    transform: translateX(0);
+
+    &.menu-open {
+      transform: translateX(-400px);
+    }
+  }
 }

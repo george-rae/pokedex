@@ -137,7 +137,7 @@ main {
 // TABLET
 @media screen and (min-width: 600px) {
   main {
-    padding: 20px 12px 20px 20px;
+    padding: 0 20px 20px;
   }
 
   .card-list {
@@ -146,12 +146,8 @@ main {
 }
 
 @media screen and (min-width: 1024px) {
-  main {
-    padding: 20px 12px 20px 20px;
-  }
-
   .card-list {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 25px;
   }
 }
