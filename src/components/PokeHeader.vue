@@ -39,6 +39,7 @@ header {
     & > .scrolling__menu {
       max-height: 60px;
       height: 60px;
+      cursor: pointer;
     }
 
     &.content-scrolling {

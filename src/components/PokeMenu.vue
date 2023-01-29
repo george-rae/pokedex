@@ -11,8 +11,9 @@ const details = useDetailsStore();
 const updateGen = (evt: Event, ID: number | GenerationGroup) => {
   const target = evt.target as HTMLElement;
   if (Array.isArray(ID)) {
-    target.classList.toggle("dropdown-active");
+    (target.parentNode as Element).classList.toggle("dropdown-active");
   } else {
+    console.log(ID);
     details.loading = true;
     setTimeout(async () => {
       menuControl();
@@ -29,23 +30,32 @@ const updateGen = (evt: Event, ID: number | GenerationGroup) => {
 
 <template>
   <aside class="generations" ref="menu">
+    <div class="generations__close" @click="menuControl()">X</div>
     <nav class="generations__nav">
-      <h2>Choose your Gen</h2>
+      <h2 class="generations__header">Choose your Gen</h2>
       <ul class="generations__list">
         <li
           class="generations__button"
           type="button"
-          v-for="(generation, index) in generations"
+          v-for="generation in generations"
           :key="generation.label"
-          :class="'generations__button--' + (index + 1)"
-          @click="updateGen($event, generation.ID as number | GenerationGroup)"
+          :class="{ expand: Array.isArray(generation.ID) }"
         >
-          {{ generation.label }}
-          <ul class="gen-dropdown" v-if="Array.isArray(generation.ID)">
-            <li v-for="gendropdown in generation.ID" :key="gendropdown.label">
-              <button @click="updateGen($event, gendropdown.ID)" type="button">
-                {{ gendropdown.label }}
-              </button>
+          <button
+            @click="
+              updateGen($event, generation.ID as number | GenerationGroup)
+            "
+            type="button"
+          >
+            {{ generation.label }}
+          </button>
+          <ul class="generations__dropdown" v-if="Array.isArray(generation.ID)">
+            <li
+              v-for="gendropdown in generation.ID"
+              :key="gendropdown.label"
+              @click="updateGen($event, gendropdown.ID)"
+            >
+              {{ gendropdown.label }}
             </li>
           </ul>
         </li>

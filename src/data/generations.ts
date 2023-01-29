@@ -1,26 +1,26 @@
 const generations = [
   {
-    label: "Gen I - Fire Red/Leaf Green",
+    label: "Fire Red/Leaf Green",
     ID: 2,
   },
   {
-    label: "Gen II - Gold/Silver",
+    label: "Gold/Silver",
     ID: 3,
   },
   {
-    label: "Gen III - Saphire/Ruby/Emerald",
+    label: "Saphire/Ruby/Emerald",
     ID: 4,
   },
   {
-    label: "Gen IV - Diamond/Pearl/Platinum",
+    label: "Diamond/Pearl/Platinum",
     ID: 6,
   },
   {
-    label: "Gen V - Black/White",
+    label: "Black/White",
     ID: 9,
   },
   {
-    label: "Gen VI - X/Y",
+    label: "X/Y",
     ID: [
       {
         label: "Kalos Central",
@@ -37,7 +37,7 @@ const generations = [
     ],
   },
   {
-    label: "Gen VII - Sun/Moon",
+    label: "Sun/Moon",
     ID: [
       {
         label: "Alola",
@@ -62,7 +62,7 @@ const generations = [
     ],
   },
   {
-    label: "Gen VIII - Sword/Shield",
+    label: "Sword/Shield",
     ID: [
       {
         label: "Galar",

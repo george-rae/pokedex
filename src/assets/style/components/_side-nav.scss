@@ -1,20 +1,164 @@
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      text-shadow: 1px 1px 4px rgba(33, 33, 33, 0.3);
+      filter: brightness(90%);
+
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}
+
+$accent: #f8f8ff;
+
 .generations {
   position: fixed;
   left: 0;
   top: 0;
 
-  width: clamp(15vw, 400px, 100vw);
+  width: 100%;
   height: 100%;
+  padding: 75px 30px 0;
   z-index: 20;
 
-  background: #dfdccc; // cream;
+  color: $accent;
+  font-size: 20px;
+  font-weight: 700;
+
+  background: url("/pokeball.svg"),
+    linear-gradient(145deg, #a0c0c8 65%, $accent);
+  background-position: bottom left;
+  background-size: 150%;
+  background-repeat: no-repeat;
   border-left: 3px solid #666;
 
   transform: translateX(100%);
   transition: transform 0.4s ease-in-out;
 
+  &__close {
+    position: absolute;
+    top: 35px;
+    right: 35px;
+
+    @include flex-x(center, center);
+    height: 45px;
+    width: 45px;
+
+    color: transparent;
+    font-size: 35px;
+    line-height: 1;
+    font-weight: 700;
+
+    opacity: 0;
+    background: linear-gradient(
+      to bottom,
+      $colour-pokeball 50%,
+      #f1f2f2 50%,
+      #f1f2f2 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    transform: translateX(10px);
+    cursor: pointer;
+
+    transition: all 0.3s ease-in-out;
+  }
+
+  &__header {
+    margin-bottom: 40px;
+
+    font-size: 28px;
+    text-shadow: 2px 2px 5px rgba(33, 33, 33, 0.4);
+  }
+
+  &__list {
+    @include flex-y;
+    gap: 5px;
+  }
+
+  &__button {
+    @include flex-x($align: center, $wrap: wrap);
+    column-gap: 15px;
+    order: 1;
+    padding: 5px 0;
+
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    @include hover;
+
+    button {
+      color: $accent;
+      font: inherit;
+      text-shadow: 2px 2px 5px rgba(33, 33, 33, 0.4);
+
+      background: transparent;
+      border: 0;
+    }
+
+    &.expand::after {
+      content: "";
+      display: inline-block;
+      order: 2;
+      width: 20px;
+      height: 20px;
+
+      background: url("/down-arrow.svg");
+      pointer-events: none;
+
+      transition: transform 0.3s ease-in-out;
+
+      & > img {
+        height: 100%;
+        width: auto;
+      }
+    }
+
+    &.dropdown-active {
+      &::after {
+        transform: rotate(180deg);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      & > .generations__dropdown {
+        max-height: 100vh;
+        padding-top: 15px;
+        padding-bottom: 5px;
+
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+
+  &__dropdown {
+    @include flex-y;
+    gap: 10px;
+    width: 100%;
+    max-height: 0;
+    order: 3;
+    padding-left: 10px;
+    padding-top: 0px;
+
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+
+    & > li {
+      font-size: 18px;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      @include hover;
+    }
+  }
+
   &.menu-open {
     transform: translateX(0);
     transition: transform 0.4s ease-in-out;
+
+    .generations__close {
+      opacity: 1;
+      transform: translateX(0);
+
+      transition: all 0.3s ease-in-out 0.25s;
+    }
   }
 }
