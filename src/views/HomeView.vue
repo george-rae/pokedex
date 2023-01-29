@@ -151,4 +151,18 @@ main {
     gap: 25px;
   }
 }
+
+@media screen and (min-width: 1920px) {
+  .card-list {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 25px;
+  }
+}
+
+@media screen and (min-width: 2500px) {
+  .card-list {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+  }
+}
 </style>
