@@ -19,6 +19,7 @@ module.exports = {
     "@typescript-eslint/ban-types": 0,
     // generic module overwrites
     "vue/script-setup-uses-vars": 0,
+    "vuejs-accessibility/click-events-have-key-events": 0,
     "import/prefer-default-export": 0,
     "prettier/prettier": ["error", { endOfLine: "auto" }],
     "import/no-unresolved": 0,

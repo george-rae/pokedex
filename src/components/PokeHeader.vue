@@ -1,67 +1,14 @@
 <!-- eslint-disable vuejs-accessibility/click-events-have-key-events -->
 <script setup lang="ts">
-import { usePokedexStore } from "@/stores/pokedex";
-import useDetailsStore from "@/stores/details";
-import type GenerationGroup from "@/types/pokemon";
-import generations from "@/data/generations";
-
-const pokedex = usePokedexStore();
-const details = useDetailsStore();
-
-const removeClass = (evt: Event) => {
-  const target = evt.target as HTMLElement;
-  const remove = target.closest(".dropdown-active") || (target as HTMLElement);
-  remove.classList.remove("dropdown-active");
-};
-
-const updateGen = (evt: Event, ID: number | GenerationGroup) => {
-  const target = evt.target as HTMLElement;
-  if (Array.isArray(ID)) {
-    target.classList.toggle("dropdown-active");
-  } else {
-    removeClass(evt);
-    details.loading = true;
-    setTimeout(async () => {
-      pokedex.changeGen(ID as number);
-      await pokedex.fetchPokemon(ID as number);
-      removeClass(evt);
-    }, 1000);
-
-    setTimeout(() => {
-      details.loading = false;
-    }, 2000);
-  }
-};
+import PokeIcon from "./PokeIcon.vue";
+import menuControl from "@/composables/menuControl";
 </script>
 
 <template>
   <header>
     <img alt="Pokedex Logo" class="pokedex-logo" src="/logo--pokedex.png" />
-    <!-- THIS IS FOR LATER -->
-    <!-- <div class="scrolling__menu">
-    </div> -->
-    <div class="gen-buttons">
-      <button
-        class="gen-buttons__button"
-        type="button"
-        v-for="(generation, index) in generations"
-        :key="generation.label"
-        :class="'gen-buttons__button--' + (index + 1)"
-        @click="updateGen($event, generation.ID as number | GenerationGroup)"
-      >
-        {{ generation.label }}
-        <ul class="gen-dropdown" v-if="Array.isArray(generation.ID)">
-          <li v-for="gendropdown in generation.ID" :key="gendropdown.label">
-            <button
-              @click="updateGen($event, gendropdown.ID)"
-              @blur="removeClass"
-              type="button"
-            >
-              {{ gendropdown.label }}
-            </button>
-          </li>
-        </ul>
-      </button>
+    <div class="scrolling__menu" @click="menuControl()">
+      <PokeIcon />
     </div>
   </header>
 </template>
@@ -72,26 +19,34 @@ const updateGen = (evt: Event, ID: number | GenerationGroup) => {
 header {
   position: relative;
 
-  @include flex-y(space-between, center);
-  gap: 12px;
+  width: 100%;
+
   z-index: 2;
 
   @media screen and (min-width: 320px) {
-    padding: 10px 10px 0;
+    @include flex-x(space-between, center);
+    padding: 10px 24px 0;
     img {
-      max-width: 387px;
-      width: clamp(300px, 90%, 387px);
-      height: auto;
+      max-height: 200px;
+      width: auto;
+      height: clamp(5vh, 140px, 10vh);
+      flex-shrink: 1;
 
-      transition: max-width 0.3s ease-in-out;
+      transition: max-height 0.5s ease-in-out;
+      filter: drop-shadow(7px 7px 6px rgba(0, 0, 0, 0.5));
+    }
+
+    & > .scrolling__menu {
+      max-height: 60px;
+      height: 60px;
     }
 
     &.content-scrolling {
-      gap: 0;
-      img {
-        max-width: 0px;
+      img,
+      .scrolling__menu {
+        max-height: 50px;
 
-        transition: max-width 0.3s ease-in-out;
+        transition: max-height 0.5s ease-in-out;
       }
     }
   }

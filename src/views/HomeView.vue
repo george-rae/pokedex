@@ -4,6 +4,7 @@ import { usePokedexStore } from "@/stores/pokedex";
 import useDetailsStore from "@/stores/details";
 import PokeCard from "@/components/PokeCard.vue";
 import PokeHeader from "@/components/PokeHeader.vue";
+import PokeMenu from "@/components/PokeMenu.vue";
 import detailsLink from "@/composables/detailsLink";
 
 const pokedex = usePokedexStore();
@@ -17,7 +18,7 @@ const mutateHeader = (evt: Event) => {
   const header: HTMLElement | null = document.querySelector("header");
   header?.classList.toggle(
     "content-scrolling",
-    (evt.target as HTMLElement).scrollTop >= 1
+    (evt.target as HTMLElement).scrollTop >= 25
   );
 };
 
@@ -43,6 +44,7 @@ onMounted(() => {
 
 <template>
   <PokeHeader />
+  <PokeMenu />
   <main @scroll="mutateHeader">
     <ul class="card-list">
       <PokeCard
@@ -59,11 +61,32 @@ onMounted(() => {
   </main>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import "@/assets/style/vars";
+
+#app {
+  &::before {
+    content: "";
+    @include absolute-fill;
+
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+
+    transition: all 0.45s ease-in-out;
+  }
+
+  &.menu-open::before {
+    opacity: 1;
+    pointer-events: all;
+    transition: all 0.45s ease-in-out;
+  }
+}
+
 main {
   position: relative;
   width: 100vw;
-  padding: 20px 0;
 
   overflow: auto;
   z-index: 1;
@@ -102,7 +125,7 @@ main {
 // MOBILE
 @media screen and (min-width: 320px) {
   main {
-    padding: 20px 32px 25px 40px;
+    padding: 20px 24px 25px;
   }
 
   .card-list {
