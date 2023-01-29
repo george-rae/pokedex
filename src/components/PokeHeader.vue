@@ -62,5 +62,9 @@ header {
   @media screen and (min-width: 1490px) {
     padding: 20px 0 0;
   }
+
+  @media screen and (min-width: 2500px) {
+    max-width: 1920px;
+  }
 }
 </style>

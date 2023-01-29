@@ -161,6 +161,7 @@ main {
 
 @media screen and (min-width: 2500px) {
   .card-list {
+    max-width: 1920px;
     grid-template-columns: repeat(6, 1fr);
     gap: 20px;
   }
