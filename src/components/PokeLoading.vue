@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import generateLetters from "@/helpers/generateLetters";
+import { generateLetters } from "@/helpers/generateLetters";
 
 const loading = generateLetters("Loading...");
 </script>

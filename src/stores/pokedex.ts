@@ -19,10 +19,27 @@ export const usePokedexStore = defineStore({
     getPokemon: (state) => state.pokemons,
   },
   actions: {
+    /**
+     * Used to completely reset the pokedex state then change the generation to what was chosen.
+     *
+     * @example <caption>resets state and changes gen.</caption>
+     * pokedex.changeGen(ID as number);
+     * @param {number} gen PokeDex ID passed from a prop on the button (stored in "@/data/generations").
+     * @returns {void} reset state and update gen.
+     */
     changeGen(gen: number) {
       this.$reset();
       this.ID = gen;
     },
+    /**
+     * A further wrapping and mutation of returned fetched API data list of all pokemon in the chosen gen.
+     * Loads 12 at a time, as loading all 151 in the first load of the page is very intensive, so loads on the fly.
+     *
+     * @example <caption>Asynchronous fetching Pokemon (12 at a time for purpose built lazy loading)</caption>
+     * await pokedex.fetchPokemon(pokedex.ID);
+     * @param {number} ID Usually fetched directly from the store where it is called.
+     * @returns {Promise<void>} Pushes the returned `JSON` to a state variable that the Vue file will read reactively.
+     */
     async fetchPokemon(ID: number) {
       const { currentLength } = this;
       const inc = 12;
@@ -46,6 +63,15 @@ export const usePokedexStore = defineStore({
         ...pokemon.pokemon_entries.slice(currentLength, currentLength + inc)
       );
     },
+    /**
+     * A further wrapping and mutation of returned fetched API data for some small amount of details on the preview cards (Home View).
+     *
+     * @example <caption>Asynchronous fetching Pokemons minor details, so that it can be shown on the preview card</caption>
+     * const details = await pokedex.fetchMinorDetails(props.name);
+     * const { sprite, types, ID } = details;
+     * @param {string} pokemon Usually fetched directly from the store where it is called.
+     * @returns {Promise<{any[], any, any}>} Pushes the returned `JSON` to a state variable that the Vue file will read reactively.
+     */
     async fetchMinorDetails(pokemon: string) {
       // need to get the species first as some pokemon returned from `pokedex` call
       // do not match their name in the API calls for /pokemon/{name}...

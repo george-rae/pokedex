@@ -1,3 +1,8 @@
+/**
+ * Handles the control/state of the sidebar menu and main body.
+ *
+ * @returns {void} no return
+ */
 export default function menuControl() {
   const items = document.querySelectorAll("#app, .generations");
 
