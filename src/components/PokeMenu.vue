@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { usePokedexStore } from "@/stores/pokedex";
 import useDetailsStore from "@/stores/details";
-import type GenerationGroup from "@/types/pokemon";
+import type { GenerationGroup } from "@/types/pokemon";
 import generations from "@/data/generations";
 import menuControl from "@/composables/menuControl";
 

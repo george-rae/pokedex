@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import type PokeState from "@/types/pokemon";
+import type { PokeState, Pokedex, Species, Pokemon } from "@/types/pokemon";
 import fetchData from "@/helpers/fetch";
 
 export const usePokedexStore = defineStore({
@@ -44,7 +44,7 @@ export const usePokedexStore = defineStore({
       const { currentLength } = this;
       const inc = 12;
 
-      const pokemon: any = await fetchData("pokedex", ID);
+      const pokemon: Pokedex = await fetchData("pokedex", ID);
 
       // getting the max entry number for current pokedex.
       this.currentMax = pokemon.pokemon_entries.length;
@@ -70,16 +70,16 @@ export const usePokedexStore = defineStore({
      * const details = await pokedex.fetchMinorDetails(props.name);
      * const { sprite, types, ID } = details;
      * @param {string} pokemon Usually fetched directly from the store where it is called.
-     * @returns {Promise<{any[], any, any}>} Pushes the returned `JSON` to a state variable that the Vue file will read reactively.
+     * @returns {Promise<{any[], any, any }>} Pushes the returned `JSON` to a state variable that the Vue file will read reactively.
      */
     async fetchMinorDetails(pokemon: string) {
       // need to get the species first as some pokemon returned from `pokedex` call
       // do not match their name in the API calls for /pokemon/{name}...
-      const species: any = await fetchData("pokemon-species", pokemon);
+      const species: Species = await fetchData("pokemon-species", pokemon);
       const APIName: string = species.varieties[0].pokemon.name;
 
       // use the filtered API name to make the fetch()
-      const details: any = await fetchData("pokemon", APIName);
+      const details: Pokemon = await fetchData("pokemon", APIName);
 
       return {
         types: [...details.types],
