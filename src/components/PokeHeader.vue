@@ -64,7 +64,7 @@ header {
   }
 
   @media screen and (min-width: 2500px) {
-    max-width: 1920px;
+    max-width: 1600px;
   }
 }
 </style>

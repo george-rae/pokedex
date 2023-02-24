@@ -24,7 +24,8 @@ type DualLayerGeneric = {
 
 // Specific types
 type Types = {
-  type: PokemonGeneric[];
+  slot: string;
+  type: NameURL;
 };
 
 type PastTypes = {
@@ -82,13 +83,14 @@ export type Pokedex = {
   is_main_series: boolean;
   description: PokemonGeneric[];
   names: PokemonGeneric[];
-  pokemon_entries: PokemonGeneric[];
+  pokemon_entries: PokemonList[];
   region: NameURL;
   version_groups: NameURL[];
 };
 
 export type PokemonList = {
-  [key: any]: PokemonGeneric[];
+  entry_number: number;
+  pokemon_species: PokemonGeneric;
 };
 
 export type Species = {
@@ -117,6 +119,13 @@ export type Species = {
   form_descriptions: PokemonGeneric[];
   genera: PokemonGeneric[];
   varieties: PokemonGeneric[];
+};
+
+export type MinorDetails = {
+  id: number;
+  sprite: string?;
+  types: Types[];
+  is_legendary: boolean;
 };
 
 export type Pokemon = {

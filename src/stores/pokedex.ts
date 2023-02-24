@@ -70,7 +70,7 @@ export const usePokedexStore = defineStore({
      * const details = await pokedex.fetchMinorDetails(props.name);
      * const { sprite, types, ID } = details;
      * @param {string} pokemon Usually fetched directly from the store where it is called.
-     * @returns {Promise<{any[], any, any }>} Pushes the returned `JSON` to a state variable that the Vue file will read reactively.
+     * @returns {Promise<any>} Pushes the returned `JSON` to a state variable that the Vue file will read reactively.
      */
     async fetchMinorDetails(pokemon: string) {
       // need to get the species first as some pokemon returned from `pokedex` call
@@ -83,8 +83,9 @@ export const usePokedexStore = defineStore({
 
       return {
         types: [...details.types],
-        ID: details.id,
+        id: details.id,
         sprite: details.sprites.other["official-artwork"].front_default,
+        is_legendary: species.is_legendary,
       };
     },
   },
