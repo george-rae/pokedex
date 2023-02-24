@@ -123,7 +123,7 @@ export type Species = {
 
 export type MinorDetails = {
   id: number;
-  sprite: string;
+  sprite: string?;
   types: Types[];
   is_legendary: boolean;
 };
