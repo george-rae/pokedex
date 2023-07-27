@@ -1,6 +1,7 @@
 import { usePokedexStore } from "@/stores/pokedex";
 import useDetailsStore from "@/stores/details";
 import router from "@/router";
+import type { Generation } from "@/types/pokemon";
 
 /**
  * Fetches the Pokemon from `name` param, usually called within Vue component or view
@@ -33,15 +34,15 @@ function details(name: string) {
  * @param {number} id generation ID.
  * @returns {void} resets state then pushes value to the router.
  */
-function generations(id: number) {
+function generations(generation: Generation) {
   const store = useDetailsStore();
   store.loading = true;
 
   const pokedex = usePokedexStore();
-  pokedex.changeGen(id);
+  pokedex.changeGen(generation.ID);
 
   setTimeout(() => {
-    router.push({ name: "generation", params: { gen: id } });
+    router.push({ name: "generation", params: { gen: generation.slug } });
   }, 1500);
 }
 

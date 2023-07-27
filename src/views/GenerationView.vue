@@ -1,29 +1,6 @@
 <script lang="ts" setup>
-import { usePokedexStore } from "@/stores/pokedex";
-import useDetailsStore from "@/stores/details";
-import type { GenerationGroup } from "@/types/pokemon";
 import generations from "@/data/generations";
 import goTo from "@/composables/goTo";
-
-const pokedex = usePokedexStore();
-const details = useDetailsStore();
-
-const updateGen = (evt: Event, ID: number | GenerationGroup) => {
-  const target = evt.target as HTMLElement;
-  if (Array.isArray(ID)) {
-    (target.parentNode as Element).classList.toggle("dropdown-active");
-  } else {
-    details.loading = true;
-    setTimeout(async () => {
-      pokedex.changeGen(ID as number);
-      await pokedex.fetchPokemon(ID as number);
-    }, 1000);
-
-    setTimeout(() => {
-      details.loading = false;
-    }, 2000);
-  }
-};
 </script>
 <template>
   <PokeHeader />
@@ -37,10 +14,7 @@ const updateGen = (evt: Event, ID: number | GenerationGroup) => {
         :key="generation.label"
         :class="{ expand: Array.isArray(generation.ID) }"
       >
-        <button
-          @click="goTo.generations(generation.ID as number)"
-          type="button"
-        >
+        <button @click="goTo.generations(generation)" type="button">
           {{ generation.label }}
         </button>
         <!-- <ul class="generations__dropdown" v-if="Array.isArray(generation.ID)">

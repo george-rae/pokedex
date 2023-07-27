@@ -1,85 +1,47 @@
 const generations = [
   {
     label: "Fire Red/Leaf Green",
+    slug: 1,
     ID: 2,
   },
   {
     label: "Gold/Silver",
+    slug: 2,
     ID: 3,
   },
   {
     label: "Saphire/Ruby/Emerald",
+    slug: 3,
     ID: 4,
   },
   {
     label: "Diamond/Pearl/Platinum",
+    slug: 4,
     ID: 6,
   },
   {
     label: "Black/White",
+    slug: 5,
     ID: 9,
   },
   {
     label: "X/Y",
-    ID: [
-      {
-        label: "Kalos Central",
-        ID: 12,
-      },
-      {
-        label: "Kalos Coastal",
-        ID: 13,
-      },
-      {
-        label: "Kalos Mountain",
-        ID: 14,
-      },
-    ],
+    slug: 6,
+    ID: 12,
   },
   {
     label: "Sun/Moon",
-    ID: [
-      {
-        label: "Alola",
-        ID: 21,
-      },
-      {
-        label: "Melemele",
-        ID: 22,
-      },
-      {
-        label: "Akala",
-        ID: 23,
-      },
-      {
-        label: "Ulaula",
-        ID: 24,
-      },
-      {
-        label: "Poni",
-        ID: 25,
-      },
-    ],
+    slug: 7,
+    ID: 21,
   },
   {
     label: "Sword/Shield",
-    ID: [
-      {
-        label: "Galar",
-        ID: 27,
-      },
-      {
-        label: "Isle of Armor",
-        ID: 28,
-      },
-      {
-        label: "Crown Tundra",
-        ID: 29,
-      },
-    ],
+    slug: 8,
+    ID: 27,
   },
   {
     label: "National",
+    slug: "national",
     ID: 1,
   },
 ];

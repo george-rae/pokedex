@@ -1,11 +1,8 @@
 // Generation list types
 type Generation = {
   label: string;
-  ID: number | string | Generation[];
-};
-
-export type GenerationGroup = {
-  [key: string]: Generation[];
+  slug: number | string;
+  ID: number;
 };
 
 // Generic types
