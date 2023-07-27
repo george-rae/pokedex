@@ -159,6 +159,31 @@
     transition: all 0.3s ease-in-out;
   }
 
+  &--ivysaur,
+  &--pidgeot,
+  &--venonat,
+  &--machamp,
+  &--goldeen,
+  &--moltres,
+  &--dratini,
+  &--cyndaquil,
+  &--umbreon,
+  &--qwilfish,
+  &--porygon2,
+  &--sealeo,
+  &--groudon,
+  &--cresselia,
+  &--servine,
+  &--gumshoos,
+  &--tyrunt,
+  &--turtonator,
+  &--obstagoon,
+  &--zacian {
+    img {
+      transform: scale(-1, 1) translateY(-50%);
+    }
+  }
+
   &::before {
     content: "";
     position: absolute;

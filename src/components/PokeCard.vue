@@ -14,7 +14,7 @@ const type =
 </script>
 
 <template>
-  <li class="card" :class="`card--${type}`">
+  <li class="card" :class="`card--${type} card--${name}`">
     <section class="card__info">
       <h2 class="card__name">{{ name }}</h2>
       <h3 class="card__id">Region ID: #{{ id }}</h3>
