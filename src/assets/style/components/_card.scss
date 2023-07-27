@@ -1,12 +1,11 @@
-.list-item {
+.card {
   position: relative;
 
-  padding: 15px;
-  @include flex-x(space-between, $wrap: wrap);
+  height: clamp(150px, 30vh, 250px);
+  padding: 32px 18px;
 
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.25));
   border-radius: 10px;
-
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
 
   overflow: hidden;
@@ -46,7 +45,7 @@
 
   @mixin background {
     background-repeat: no-repeat;
-    background-position: 25% 25%;
+    background-position: 75px -50px, 25% 25%;
     background-size: auto 150%;
   }
 
@@ -83,8 +82,18 @@
     }
   }
 
+  &__info {
+    position: relative;
+
+    @include flex-y(space-between);
+    gap: 10px;
+    width: 50%;
+
+    z-index: 3;
+  }
+
   &__name {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 700;
     color: #fff;
     text-transform: capitalize;
@@ -111,12 +120,12 @@
   }
 
   &__types {
-    @include flex-x(center, center);
-    margin: 5px auto;
+    @include flex-x($align: center);
+    gap: 5px;
+    margin-top: 25px;
 
     p {
       padding: 5px 10px;
-      margin: 0 5px;
       border-radius: 7.5px;
 
       color: #fff;
@@ -128,12 +137,25 @@
     }
   }
 
+  &__legendary {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+
+    animation: spooky 2500ms ease-in-out infinite 1500ms;
+  }
+
   img {
-    position: relative;
-    width: 100%;
+    position: absolute;
+    top: 50%;
+    right: -50px;
+
+    height: 100%;
+    width: auto;
+
     z-index: 2;
 
-    transform: scale(1);
+    transform: scale(1) translateY(-50%);
     transition: all 0.3s ease-in-out;
   }
 
@@ -156,27 +178,22 @@
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease-in-out;
 
-    img {
-      transform: scale(1.1);
-      transition: all 0.3s ease-in-out;
-    }
-
     &::before {
       opacity: 1;
       transition: opacity 0.3s ease-in-out;
     }
   }
 
-  @media screen and (min-width: 320px) {
-    &__name,
-    &__id {
-      font-size: 18px;
-    }
+  // @media screen and (min-width: 320px) {
+  //   &__name,
+  //   &__id {
+  //     font-size: 18px;
+  //   }
 
-    &__types {
-      padding-bottom: 15px;
-    }
-  }
+  //   &__types {
+  //     padding-bottom: 15px;
+  //   }
+  // }
 }
 
 @keyframes fadeIn {
@@ -187,5 +204,20 @@
   100% {
     opacity: 1;
     transform: translateY(0px);
+  }
+}
+
+@keyframes spooky {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }

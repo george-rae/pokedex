@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import GenerationView from "../views/GenerationView.vue";
+import ListView from "../views/ListView.vue";
 import DetailView from "../views/DetailView.vue";
 
 const router = createRouter({
@@ -8,7 +9,12 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: HomeView,
+      component: GenerationView,
+    },
+    {
+      path: "/generation/:gen",
+      name: "generation",
+      component: ListView,
     },
     {
       path: "/details/:pokemon",

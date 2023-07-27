@@ -14,16 +14,18 @@ const type =
 </script>
 
 <template>
-  <li class="list-item" :class="`list-item--${type}`">
-    <h2 class="list-item__name">{{ name }}</h2>
-    <h3 class="list-item__id">#{{ id }}</h3>
-    <span class="list-item__entry">Entry: #{{ entry }}</span>
-    <span v-if="is_legendary">Legendary</span>
+  <li class="card" :class="`card--${type}`">
+    <section class="card__info">
+      <h2 class="card__name">{{ name }}</h2>
+      <h3 class="card__id">Region ID: #{{ id }}</h3>
+      <div class="card__types">
+        <p v-for="type in types" :key="type.type.name">
+          {{ type.type.name }}
+        </p>
+      </div>
+      <span v-if="is_legendary" class="card__legendary">Legendary</span>
+    </section>
     <img :src="sprite as string" :alt="`${id} sprite`" />
-    <div class="list-item__types">
-      <p v-for="type in types" :key="type.type.name">
-        {{ type.type.name }}
-      </p>
-    </div>
+    <span class="card__entry">Entry: #{{ entry }}</span>
   </li>
 </template>

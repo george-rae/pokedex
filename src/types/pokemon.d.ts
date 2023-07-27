@@ -61,7 +61,7 @@ type Sprites = {
   front_shiny: string;
   front_shiny_female: string | null;
   other: SpritesOther;
-  version: SpritesVersion;
+  versions: SpritesVersion;
 };
 
 // State Type

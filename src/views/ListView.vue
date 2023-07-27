@@ -4,7 +4,7 @@ import { usePokedexStore } from "@/stores/pokedex";
 import useDetailsStore from "@/stores/details";
 import PokeCard from "@/components/PokeCard.vue";
 import PokeHeader from "@/components/PokeHeader.vue";
-import detailsLink from "@/composables/detailsLink";
+import goTo from "@/composables/goTo";
 
 const pokedex = usePokedexStore();
 await pokedex.fetchPokemon(pokedex.ID);
@@ -42,7 +42,7 @@ onMounted(() => {
         :key="pokemon.entry_number"
         :name="pokemon.pokemon_species.name"
         :entry="pokemon.entry_number"
-        @click="detailsLink(pokemon.pokemon_species.name)"
+        @click="goTo.details(pokemon.pokemon_species.name)"
         v-cloak
       >
       </PokeCard>
@@ -115,12 +115,12 @@ main {
 // MOBILE
 @media screen and (min-width: 320px) {
   main {
-    padding: 20px 24px 25px;
+    padding: 20px 12px 25px;
   }
 
   .card-list {
     grid-template-columns: 100%;
-    gap: 25px;
+    gap: 18px;
   }
 }
 

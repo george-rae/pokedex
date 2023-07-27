@@ -7,7 +7,7 @@ export default defineStore({
   state: (): Details => ({
     name: "",
     id: 0,
-    loading: true,
+    loading: false,
     evolution_chain: "",
     details: [],
   }),
@@ -25,7 +25,7 @@ export default defineStore({
      * @param {string} name The API name of the pokemon to be assigned into the state.
      * @returns {Promise<void>} Sets the curent pokemon info in the state and sets a `localStorage` variable.
      */
-    async assignPokemon(name: string) {
+    async assignPokemon(name: string): Promise<void> {
       // need to get the species first as some pokemon returned from `pokedex` call
       // do not match their name in the API calls for /pokemon/{name}...
       const species: any = await fetchData("pokemon-species", name);

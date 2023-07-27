@@ -27,7 +27,7 @@ export const usePokedexStore = defineStore({
      * @param {number} gen PokeDex ID passed from a prop on the button (stored in "@/data/generations").
      * @returns {void} reset state and update gen.
      */
-    changeGen(gen: number) {
+    changeGen(gen: number): void {
       this.$reset();
       this.ID = gen;
     },
@@ -40,7 +40,7 @@ export const usePokedexStore = defineStore({
      * @param {number} ID Usually fetched directly from the store where it is called.
      * @returns {Promise<void>} Pushes the returned `JSON` to a state variable that the Vue file will read reactively.
      */
-    async fetchPokemon(ID: number) {
+    async fetchPokemon(ID: number): Promise<void> {
       const { currentLength } = this;
       const inc = 12;
 
@@ -72,7 +72,7 @@ export const usePokedexStore = defineStore({
      * @param {string} pokemon Usually fetched directly from the store where it is called.
      * @returns {Promise<any>} Pushes the returned `JSON` to a state variable that the Vue file will read reactively.
      */
-    async fetchMinorDetails(pokemon: string) {
+    async fetchMinorDetails(pokemon: string): Promise<any> {
       // need to get the species first as some pokemon returned from `pokedex` call
       // do not match their name in the API calls for /pokemon/{name}...
       const species: Species = await fetchData("pokemon-species", pokemon);
