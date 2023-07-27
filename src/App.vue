@@ -12,9 +12,7 @@ const state = useDetailStore();
   </Suspense>
   <PokeLoading
     :class="{
-      unloaded: state.loading === false,
       loading: state.loading,
-      initial: state.loading === '',
     }"
     ref="loaded"
   />

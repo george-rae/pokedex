@@ -1,15 +1,15 @@
 <!-- eslint-disable vuejs-accessibility/click-events-have-key-events -->
 <script setup lang="ts">
-import PokeIcon from "./PokeIcon.vue";
-import menuControl from "@/composables/menuControl";
+// import PokeIcon from "./PokeIcon.vue";
+// import menuControl from "@/composables/menuControl";
 </script>
 
 <template>
   <header>
     <img alt="Pokedex Logo" class="pokedex-logo" src="/logo--pokedex.png" />
-    <div class="scrolling__menu" @click="menuControl()">
+    <!-- <div class="scrolling__menu" @click="menuControl()">
       <PokeIcon />
-    </div>
+    </div> -->
   </header>
 </template>
 

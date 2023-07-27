@@ -1,17 +1,13 @@
 <script setup lang="ts">
 import { generateLetters } from "@/helpers/generateLetters";
+import PokeIcon from "./PokeIcon.vue";
 
 const loading = generateLetters("Loading...");
 </script>
 
 <template>
   <figure class="loading-background">
-    <img
-      class="loading-background__left"
-      src="/background--pokedex-left.png"
-      alt="pokedex left loading background image"
-    />
-    <div class="loading-background__right"></div>
+    <PokeIcon />
     <figcaption>
       <span v-for="(letters, index) in loading" :key="index">
         {{ letters }}

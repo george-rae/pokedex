@@ -3,56 +3,39 @@
   top: 0;
   left: 0;
 
+  @include flex-y(center, center);
+  gap: 20px;
   height: 100%;
   width: 100%;
 
+  opacity: 0;
+  background: #f2f2f2;
+
   z-index: 10;
+  pointer-events: none;
+  transition: opacity 250ms ease-in-out;
 
-  &__left,
-  &__right {
-    position: absolute;
-  }
+  .pokeball-icon {
+    position: relative;
 
-  &__left {
-    z-index: 2;
-  }
-
-  &__right {
-    height: 100vh;
-    width: 100vw;
-
-    background: #c12026;
+    height: 75px;
+    width: 75px;
   }
 
   &.loading {
+    opacity: 1;
     z-index: 20;
+    transition: opacity 250ms ease-in-out 750ms;
+
     figcaption {
       opacity: 1;
       transition: opacity 250ms ease-in-out 500ms;
     }
   }
 
-  &.unloaded {
-    pointer-events: none;
-
-    figcaption {
-      opacity: 0;
-      transition: opacity 250ms ease-in-out;
-    }
-  }
-
-  &.initial {
-    figcaption {
-      opacity: 1;
-      transition: opacity 250ms ease-in-out 750ms;
-    }
-  }
-
   figcaption {
-    position: absolute;
-
     font-size: clamp(25px, 8vw, 125px);
-    color: #fff;
+    color: #333;
     font-weight: 700;
 
     opacity: 0;
@@ -84,14 +67,6 @@
   }
 
   @media screen and (min-width: 320px) {
-    &__left {
-      top: -25vh;
-
-      width: 75vh;
-
-      transform: rotate(90deg);
-    }
-
     figcaption {
       bottom: 15%;
 
@@ -99,34 +74,9 @@
 
       text-align: center;
     }
-
-    &.unloaded {
-      & > .loading-background__left {
-        animation: slideLeftM 1000ms ease-in-out 1 forwards;
-      }
-
-      & > .loading-background__right {
-        animation: slideRightM 1000ms ease-in-out 1 forwards;
-      }
-    }
-
-    &.loading {
-      & > .loading-background__left {
-        animation: slideFromLeftM 1000ms ease-in-out 1 forwards;
-      }
-
-      & > .loading-background__right {
-        animation: slideFromRightM 1000ms ease-in-out 1 forwards;
-      }
-    }
   }
 
   @media screen and (min-width: 1024px) {
-    &__left {
-      top: 0;
-      transform: none;
-    }
-
     figcaption {
       bottom: 50%;
       right: 20px;
@@ -138,97 +88,12 @@
 
     &.loading {
       z-index: 20;
-      & > .loading-background__left {
-        animation: slideFromLeft 1000ms ease-in-out 1 forwards;
-      }
-
-      & > .loading-background__right {
-        animation: slideFromRight 1000ms ease-in-out 1 forwards;
-      }
 
       figcaption {
         opacity: 1;
         transition: opacity 250ms ease-in-out 500ms;
       }
     }
-
-    &.unloaded {
-      pointer-events: none;
-      & > .loading-background__left {
-        animation: slideLeft 1000ms ease-in-out 1 forwards;
-      }
-
-      & > .loading-background__right {
-        animation: slideRight 1000ms ease-in-out 1 forwards;
-      }
-
-      figcaption {
-        opacity: 0;
-        transition: opacity 250ms ease-in-out;
-      }
-    }
-  }
-}
-
-// MOBILE KEYFRAMES AS IT COMES FROM TOP/BOTTOM
-@keyframes slideFromLeftM {
-  from {
-    transform: translate(-100vh, -50%);
-  }
-  to {
-    transform: rotate(90deg) translate(0, 0);
-  }
-}
-
-@keyframes slideFromRightM {
-  from {
-    transform: translate(0, 100%);
-  }
-  to {
-    transform: translate(0, 0);
-  }
-}
-
-@keyframes slideLeftM {
-  to {
-    transform: translate(-100vh, -50%);
-  }
-}
-
-@keyframes slideRightM {
-  to {
-    transform: translate(0, 100%);
-  }
-}
-
-// DESKTOP KEYFRAMES AS IT WILL COME IN FROM THE SIDES
-@keyframes slideFromLeft {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideFromRight {
-  from {
-    transform: translateX(100vw);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideLeft {
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes slideRight {
-  to {
-    transform: translateX(100vw);
   }
 }
 

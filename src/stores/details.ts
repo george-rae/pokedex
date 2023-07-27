@@ -7,7 +7,7 @@ export default defineStore({
   state: (): Details => ({
     name: "",
     id: 0,
-    loading: "",
+    loading: true,
     evolution_chain: "",
     details: [],
   }),
