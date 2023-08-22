@@ -40,10 +40,8 @@ export const usePokedexStore = defineStore({
      * @param {number} ID Usually fetched directly from the store where it is called.
      * @returns {Promise<void>} Pushes the returned `JSON` to a state variable that the Vue file will read reactively.
      */
-    async fetchPokemon(ID: number): Promise<void> {
+    async fetchPokemon(ID: number, amount: number): Promise<void> {
       const { currentLength } = this;
-      const inc = 12;
-
       const pokemon: Pokedex = await fetchData("pokedex", ID);
 
       // getting the max entry number for current pokedex.
@@ -51,7 +49,7 @@ export const usePokedexStore = defineStore({
 
       // adding current length to keep track of `splice()` start position.
       if (this.currentLength <= this.currentMax) {
-        this.currentLength = currentLength + inc;
+        this.currentLength = currentLength + amount;
       } else {
         // if currentLength exceeds the pokedex length then do no more.
         this.currentLength = this.currentMax;
@@ -60,7 +58,7 @@ export const usePokedexStore = defineStore({
 
       // push the spread array to the state variable so the result can be cached with a getter.
       this.pokemons.push(
-        ...pokemon.pokemon_entries.slice(currentLength, currentLength + inc)
+        ...pokemon.pokemon_entries.slice(currentLength, currentLength + amount)
       );
     },
     /**

@@ -1,13 +1,25 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { usePokedexStore } from "@/stores/pokedex";
+import router from "@/router";
 import useDetailsStore from "@/stores/details";
 import PokeCard from "@/components/PokeCard.vue";
 import PokeHeader from "@/components/PokeHeader.vue";
 import goTo from "@/composables/goTo";
 
 const pokedex = usePokedexStore();
-await pokedex.fetchPokemon(pokedex.ID);
+
+const url = window.location.href;
+const fallback = url.split("/").pop() as string;
+const stateID = pokedex.ID as number;
+
+console.log(fallback, pokedex);
+
+// const name = stateName !== fallback || !stateName ? fallback : stateName;
+
+// if (!name || name === "") router.back();
+
+await pokedex.fetchPokemon(pokedex.ID, 20);
 const pokemons = pokedex.getPokemon;
 
 const details = useDetailsStore();
@@ -19,7 +31,7 @@ onMounted(() => {
       const { isIntersecting } = list[0];
 
       if (!(pokemons.length === 0) && isIntersecting) {
-        pokedex.fetchPokemon(pokedex.ID);
+        pokedex.fetchPokemon(pokedex.ID, 20);
       }
     },
     { threshold: 1.0 } // This means the entire element needs to be on show.
@@ -49,6 +61,8 @@ onMounted(() => {
       <div class="observer-pixel" ref="obs" />
     </ul>
   </main>
+
+  <img class="background-pokeball" src="/pokeball.svg" alt="Pokeball icon" />
 </template>
 
 <style lang="scss">
@@ -95,7 +109,7 @@ main {
 
 .observer-pixel {
   position: absolute;
-  bottom: 100px;
+  bottom: 150px;
   left: 0;
 
   height: 1px;

@@ -16,7 +16,6 @@ const state = useDetailStore();
     }"
     ref="loaded"
   />
-  <img class="background-pokeball" src="/pokeball.svg" alt="Pokeball icon" />
 </template>
 
 <style lang="scss">

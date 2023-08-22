@@ -1,6 +1,8 @@
 <template>
   <header>
-    <img alt="Pokedex Logo" class="pokedex-logo" src="/logo--pokedex.png" />
+    <RouterLink to="/">
+      <img alt="Pokedex Logo" class="pokedex-logo" src="/logo--pokedex.png" />
+    </RouterLink>
   </header>
 </template>
 
