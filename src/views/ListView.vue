@@ -1,23 +1,12 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { usePokedexStore } from "@/stores/pokedex";
-import router from "@/router";
 import useDetailsStore from "@/stores/details";
 import PokeCard from "@/components/PokeCard.vue";
 import PokeHeader from "@/components/PokeHeader.vue";
 import goTo from "@/composables/goTo";
 
 const pokedex = usePokedexStore();
-
-const url = window.location.href;
-const fallback = url.split("/").pop() as string;
-const stateID = pokedex.ID as number;
-
-console.log(fallback, pokedex);
-
-// const name = stateName !== fallback || !stateName ? fallback : stateName;
-
-// if (!name || name === "") router.back();
 
 await pokedex.fetchPokemon(pokedex.ID, 20);
 const pokemons = pokedex.getPokemon;

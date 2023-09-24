@@ -3,7 +3,6 @@ type Generation = {
   label: string;
   slug: number | string;
   ID: number;
-  getIDFromSlug: number;
 };
 
 // Generic types

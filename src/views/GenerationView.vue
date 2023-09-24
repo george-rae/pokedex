@@ -2,6 +2,7 @@
 import generations from "@/data/generations";
 import goTo from "@/composables/goTo";
 </script>
+
 <template>
   <main class="generations">
     <h2 class="generations__header">Choose your Gen</h2>
@@ -29,19 +30,19 @@ import goTo from "@/composables/goTo";
 @import "@/assets/style/vars";
 .generations {
   @include flex-y;
-  gap: 20px;
-  padding: 50px 20px;
+  gap: 24px;
+  padding: 48px 24px;
 
   &__header {
     color: #333;
-    font-size: 35px;
+    font-size: clamp(24px, 10vw, 36px);
     font-weight: bold;
     text-align: center;
   }
 
   &__list {
     display: grid;
-    gap: 20px;
+    gap: 24px;
   }
 
   &__item {
@@ -49,11 +50,11 @@ import goTo from "@/composables/goTo";
 
     @include flex-y($align: center);
     height: 200px;
-    padding: 15px;
+    padding: 12px;
 
-    border-radius: 10px;
-    background: linear-gradient(45deg, #f2f2f2, #fff);
-    box-shadow: 2px 2px 5px 1px rgba(33, 33, 33, 0.3);
+    border-radius: 12px;
+    background: var(--theme-background);
+    box-shadow: 3px 3px 4px 1px var(--theme-box-shadow);
     overflow: hidden;
     opacity: 0;
 
@@ -68,7 +69,7 @@ import goTo from "@/composables/goTo";
     &--national {
       img {
         width: 100%;
-        margin-top: -10px;
+        margin-top: -12px;
       }
     }
 
@@ -81,23 +82,22 @@ import goTo from "@/composables/goTo";
     &::after {
       content: "";
       position: absolute;
-      bottom: -40px;
-      right: -40px;
+      bottom: -48px;
+      right: -48px;
 
-      height: 200px;
-      width: 200px;
+      height: 204px;
+      width: 204px;
 
       background: url("/pokeball.svg");
       background-size: 100% 100%;
       opacity: 0.4;
-      filter: drop-shadow(-5px -5px 4px rgba(0, 0, 0, 0.3));
+      filter: drop-shadow(-6px -6px 6px var(--theme-box-shadow));
     }
   }
 
   &__label {
-    color: #666;
-    font-size: 22px;
-    font-weight: 300;
+    color: var(--theme-colour);
+    font-size: 24px;
     text-align: center;
   }
 }
@@ -105,7 +105,7 @@ import goTo from "@/composables/goTo";
 @keyframes fadeIn {
   0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(24px);
   }
   100% {
     opacity: 1;

@@ -1,7 +1,7 @@
 <template>
   <header>
     <RouterLink to="/">
-      <img alt="Pokedex Logo" class="pokedex-logo" src="/logo--pokedex.png" />
+      <h1>PokéDex</h1>
     </RouterLink>
   </header>
 </template>
@@ -19,17 +19,25 @@ header {
 
   @media screen and (min-width: 320px) {
     @include flex-x(space-between, center);
-    padding: 10px 24px 0;
-    img {
-      max-height: 140px;
-      width: auto;
-      height: clamp(5vh, 140px, 10vh);
-      flex-shrink: 1;
+    padding: 24px 24px 0;
 
-      transition: max-height 0.5s ease-in-out;
-      filter: drop-shadow(7px 7px 6px rgba(0, 0, 0, 0.5));
+    & > a {
+      text-decoration: none;
     }
 
+    h1 {
+      display: block;
+      margin: 0 auto;
+
+      font-size: clamp(36px, 15vw, 60px);
+      font-weight: 700;
+      text-align: center;
+      color: transparent;
+
+      background: linear-gradient(to right, #666, #333);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
     & > .scrolling__menu {
       max-height: 60px;
       height: 60px;
@@ -39,11 +47,12 @@ header {
     }
 
     &.content-scrolling {
-      img,
+      h1,
       .scrolling__menu {
         max-height: 50px;
+        font-size: clamp(24px, 7.5vw, 48px);
 
-        transition: max-height 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
       }
     }
   }
