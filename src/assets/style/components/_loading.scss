@@ -9,17 +9,20 @@
   width: 100%;
 
   opacity: 0;
-  background: #f2f2f2;
+  background: var(--theme-background);
 
   z-index: 10;
   pointer-events: none;
-  transition: opacity 250ms ease-in-out 750ms;
+  transition: opacity 250ms ease-in-out 500ms;
 
   .pokeball-icon {
     position: relative;
 
-    height: 75px;
-    width: 75px;
+    height: clamp(75px, 20vw, 150px);
+    width: clamp(75px, 20vw, 150px);
+
+    opacity: 0;
+    transition: opacity 250ms ease-in-out;
   }
 
   &.loading {
@@ -27,7 +30,8 @@
     z-index: 20;
     transition: opacity 250ms ease-in-out;
 
-    figcaption {
+    figcaption,
+    .pokeball-icon {
       opacity: 1;
       transition: opacity 250ms ease-in-out 250ms;
     }
@@ -35,7 +39,7 @@
 
   figcaption {
     font-size: clamp(25px, 8vw, 125px);
-    color: #333;
+    color: var(--theme-colour);
     font-weight: 700;
 
     opacity: 0;
@@ -88,11 +92,6 @@
 
     &.loading {
       z-index: 20;
-
-      figcaption {
-        opacity: 1;
-        transition: opacity 250ms ease-in-out 500ms;
-      }
     }
   }
 }

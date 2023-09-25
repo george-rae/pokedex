@@ -38,7 +38,7 @@ function changeTheme(): void {
 <style lang="scss">
 @import "@/assets/style/vars";
 
-#app {
+.content {
   position: relative;
 
   @include flex-y(space-between, center, $wrap: nowrap);
@@ -48,25 +48,10 @@ function changeTheme(): void {
 
   overflow: hidden;
 
-  .content {
-    background-image: var(--theme-background);
-    color: var(--theme-colour);
+  background-image: var(--theme-background);
+  color: var(--theme-colour);
 
-    transition: background-image 0.3s ease-out;
-
-    &.light {
-      --theme-background: linear-gradient(to bottom right, #e6e6e6, #fff);
-      --theme-colour: #333;
-      --theme-box-shadow: #{rgba(#333, 0.3)};
-      --theme-gradient-text: linear-gradient(to right, #333, #000);
-    }
-    &.dark {
-      --theme-background: linear-gradient(to bottom right, #333, #000);
-      --theme-colour: #f2f2f2;
-      --theme-box-shadow: #{rgba(#e6e6e6, 0.2)};
-      --theme-gradient-text: linear-gradient(to right, #e6e6e6, #fff);
-    }
-  }
+  transition: background-image 0.3s ease-out;
 
   .background-pokeball {
     position: absolute;

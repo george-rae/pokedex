@@ -34,10 +34,14 @@ import goTo from "@/composables/goTo";
   padding: 48px 24px;
 
   &__header {
-    color: #333;
-    font-size: clamp(24px, 10vw, 36px);
+    color: transparent;
+    font-size: clamp(24px, 10vw, 48px);
     font-weight: bold;
     text-align: center;
+
+    background: var(--theme-gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
   }
 
   &__list {
@@ -49,21 +53,26 @@ import goTo from "@/composables/goTo";
     position: relative;
 
     @include flex-y($align: center);
-    height: 200px;
+    height: clamp(150px, 25vh, 200px);
     padding: 12px;
 
     border-radius: 12px;
     background: var(--theme-background);
-    box-shadow: 3px 3px 4px 1px var(--theme-box-shadow);
+    box-shadow: 0px 0px 12px 1px var(--theme-box-shadow);
     overflow: hidden;
     opacity: 0;
 
+    cursor: pointer;
     animation: fadeIn 500ms linear 1 forwards;
+    transition: all 0.3s ease-in-out;
 
     img {
       width: 80%;
       height: auto;
       z-index: 1;
+
+      transform: scale(1);
+      transition: all 300ms ease-out;
     }
 
     &--national {
@@ -93,12 +102,68 @@ import goTo from "@/composables/goTo";
       opacity: 0.4;
       filter: drop-shadow(-6px -6px 6px var(--theme-box-shadow));
     }
+
+    &:hover {
+      box-shadow: 0 0 6px 6px var(--theme-box-shadow);
+      transition: all 0.3s ease-in-out;
+      filter: brightness(0.85);
+
+      img {
+        transform: scale(1.1);
+        transition: all 300ms ease-out;
+      }
+    }
   }
 
   &__label {
     color: var(--theme-colour);
     font-size: 24px;
     text-align: center;
+  }
+
+  @media screen and (min-width: 600px) {
+    height: 100%;
+    padding: 24px;
+
+    &__list {
+      grid-template-columns: repeat(2, 50%);
+      justify-content: center;
+    }
+  }
+
+  @media screen and (min-width: 900px) {
+    &__list {
+      grid-template-columns: repeat(3, 30%);
+    }
+
+    &__item img {
+      width: 90%;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    @include flex-y(center, center);
+    gap: 48px;
+    &__list {
+      max-width: 1200px;
+    }
+
+    &__item img {
+      width: 80%;
+    }
+  }
+
+  @media screen and (min-width: 2000px) {
+    &__list {
+      max-width: 1600px;
+    }
+
+    &__item {
+      height: clamp(150px, 25vh, 350px);
+      img {
+        width: 90%;
+      }
+    }
   }
 }
 

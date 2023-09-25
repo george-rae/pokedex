@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import useDetailsStore from "@/stores/details";
 import router from "@/router";
 import PokeDetail from "@/components/PokeDetail.vue";
@@ -22,12 +21,6 @@ details.assignPokemon(name);
 
 const detail = await details.fetchDetails(name);
 
-// THIS WILL GO
-const log = ref<Element | null>();
-const toggle = () => {
-  document.querySelector(".jv-container")?.classList.toggle("js-active");
-};
-
 setTimeout(() => {
   details.loading = false;
 }, 2000);
@@ -36,15 +29,6 @@ setTimeout(() => {
 <template>
   <Suspense>
     <main ref="detail">
-      <button @click="toggle()" type="button">View JSON</button>
-      <json-viewer
-        :value="detail"
-        :expand-depth="1"
-        copyable
-        boxed
-        sort
-        ref="log"
-      ></json-viewer>
       <PokeDetail :name="name"></PokeDetail>
     </main>
   </Suspense>
@@ -79,24 +63,5 @@ button {
   border-radius: 5px;
   border: 1px solid #fff;
   cursor: pointer;
-}
-.jv-container {
-  position: absolute !important;
-  top: 15px;
-  left: 15px;
-
-  max-height: 0;
-  max-width: 0;
-  opacity: 0;
-
-  transition: all 300ms ease-in-out;
-
-  &.js-active {
-    max-height: 100vh;
-    max-width: 100vw;
-    opacity: 1;
-
-    transition: all 300ms ease-in-out;
-  }
 }
 </style>

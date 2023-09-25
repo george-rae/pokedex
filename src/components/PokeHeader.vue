@@ -34,7 +34,7 @@ header {
       text-align: center;
       color: transparent;
 
-      background: linear-gradient(to right, #666, #333);
+      background: var(--theme-gradient-text);
       -webkit-background-clip: text;
       background-clip: text;
     }
